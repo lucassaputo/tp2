@@ -1,6 +1,6 @@
 ﻿namespace tp2
 {
-    partial class frmDetalles
+    partial class Form3Detalles
     {
         /// <summary>
         /// Required designer variable.
@@ -41,13 +41,13 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnSaludar_Click);
             // 
-            // frmDetalles
+            // Form3Detalles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnBack);
-            this.Name = "frmDetalles";
+            this.Name = "Form3Detalles";
             this.Text = "Detalle del articulo";
             this.Load += new System.EventHandler(this.frmVentana3_Load);
             this.ResumeLayout(false);

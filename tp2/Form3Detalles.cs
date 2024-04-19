@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace tp2
 {
-    public partial class frmDetalles : Form
+    public partial class Form3Detalles : Form
     {
-        public frmDetalles()
+        public Form3Detalles()
         {
             InitializeComponent();
         }
