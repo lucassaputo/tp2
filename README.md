@@ -9,7 +9,7 @@ Deberá ser un programa de escritorio que contemple la administración de artículo
 -   Agregar artículos.
 -   Modificar artículos.
 -   Eliminar artículos.
--   Ver detalle de un artículo.
+-   Ver detalle de un artículo. 
 - 
 Toda ésta información deberá ser persistida en una base de datos ya existente (la cual se adjunta).
 
