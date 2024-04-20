@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace tp2
 {
-    public partial class Form3Detalles : Form
+    public partial class frmDetalles : Form
     {
-        public Form3Detalles()
+        public frmDetalles()
         {
             InitializeComponent();
         }
@@ -24,7 +24,10 @@ namespace tp2
 
         private void btnSaludar_Click(object sender, EventArgs e)
         {
-
+            
         }
+
+
+       
     }
 }
