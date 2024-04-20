@@ -7,14 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TP_2;
 
 namespace tp2
 {
-    public partial class Form1 : Form
+    public partial class FormCatalogo : Form
     {
-        public Form1()
+        private List<Articulo> listaArticulos;
+        public FormCatalogo()
         {
             InitializeComponent();
         }
+
+        private void FormCatalogo_Load(object sender, EventArgs e)
+        {
+            cboCampo.Items.Add("Nombre");
+            cboCampo.Items.Add("Precio");
+            cboCampo.Items.Add("Descripcion");
+
+        }
+
     }
 }
