@@ -209,7 +209,7 @@
             this.btnMenuModificarArt.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuModificarArt.Image")));
             this.btnMenuModificarArt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnMenuModificarArt.Name = "btnMenuModificarArt";
-            this.btnMenuModificarArt.Size = new System.Drawing.Size(29, 28);
+            this.btnMenuModificarArt.Size = new System.Drawing.Size(29, 24);
             this.btnMenuModificarArt.Text = "toolStripButton2";
             // 
             // btnMenuEliminarArt
@@ -218,7 +218,7 @@
             this.btnMenuEliminarArt.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuEliminarArt.Image")));
             this.btnMenuEliminarArt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnMenuEliminarArt.Name = "btnMenuEliminarArt";
-            this.btnMenuEliminarArt.Size = new System.Drawing.Size(29, 28);
+            this.btnMenuEliminarArt.Size = new System.Drawing.Size(29, 24);
             this.btnMenuEliminarArt.Text = "toolStripButton3";
             // 
             // btnMenuBuscarArt
@@ -227,7 +227,7 @@
             this.btnMenuBuscarArt.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuBuscarArt.Image")));
             this.btnMenuBuscarArt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnMenuBuscarArt.Name = "btnMenuBuscarArt";
-            this.btnMenuBuscarArt.Size = new System.Drawing.Size(29, 28);
+            this.btnMenuBuscarArt.Size = new System.Drawing.Size(29, 24);
             this.btnMenuBuscarArt.Text = "toolStripButton4";
             // 
             // toolStrip1
