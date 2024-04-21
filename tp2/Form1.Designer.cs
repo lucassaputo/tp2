@@ -64,14 +64,15 @@
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.RowHeadersWidth = 51;
             this.dgvArticulos.RowTemplate.Height = 24;
-            this.dgvArticulos.Size = new System.Drawing.Size(603, 283);
+            this.dgvArticulos.Size = new System.Drawing.Size(750, 283);
             this.dgvArticulos.TabIndex = 0;
             // 
             // pibArticulos
             // 
-            this.pibArticulos.Location = new System.Drawing.Point(634, 93);
+            this.pibArticulos.Location = new System.Drawing.Point(769, 93);
             this.pibArticulos.Name = "pibArticulos";
             this.pibArticulos.Size = new System.Drawing.Size(211, 283);
+            this.pibArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pibArticulos.TabIndex = 1;
             this.pibArticulos.TabStop = false;
             // 
@@ -79,7 +80,7 @@
             // 
             this.btnDetalleArticulo.BackColor = System.Drawing.Color.Cyan;
             this.btnDetalleArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDetalleArticulo.Location = new System.Drawing.Point(690, 394);
+            this.btnDetalleArticulo.Location = new System.Drawing.Point(817, 394);
             this.btnDetalleArticulo.Name = "btnDetalleArticulo";
             this.btnDetalleArticulo.Size = new System.Drawing.Size(109, 45);
             this.btnDetalleArticulo.TabIndex = 2;
@@ -200,7 +201,7 @@
             this.btnMenuAgregarArt.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuAgregarArt.Image")));
             this.btnMenuAgregarArt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnMenuAgregarArt.Name = "btnMenuAgregarArt";
-            this.btnMenuAgregarArt.Size = new System.Drawing.Size(29, 24);
+            this.btnMenuAgregarArt.Size = new System.Drawing.Size(29, 28);
             this.btnMenuAgregarArt.Text = "toolStripButton1";
             // 
             // btnMenuModificarArt
@@ -240,7 +241,7 @@
             this.btnMenuBuscarArt});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(905, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(982, 31);
             this.toolStrip1.TabIndex = 15;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -254,6 +255,7 @@
             this.btnMarcas.TabIndex = 16;
             this.btnMarcas.Text = "Administrar Marcas";
             this.btnMarcas.UseVisualStyleBackColor = false;
+            this.btnMarcas.Click += new System.EventHandler(this.btnMarcas_Click);
             // 
             // btnCategorias
             // 
@@ -265,12 +267,13 @@
             this.btnCategorias.TabIndex = 17;
             this.btnCategorias.Text = "Administrar Categorías";
             this.btnCategorias.UseVisualStyleBackColor = false;
+            this.btnCategorias.Click += new System.EventHandler(this.btnCategorias_Click);
             // 
             // FormCatalogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(905, 547);
+            this.ClientSize = new System.Drawing.Size(982, 547);
             this.Controls.Add(this.btnCategorias);
             this.Controls.Add(this.btnMarcas);
             this.Controls.Add(this.toolStrip1);
