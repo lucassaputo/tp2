@@ -5,13 +5,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace TP_2
+namespace dominio
 {
     public class Articulo
     {
         public int ID { get; set; }
-        public string Nombree { get; set; }
-        public string Descripcionn { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
         public string Codigo { get; set; }
         public Marca Marca { get; set; }
         public Categoria Categoria { get; set; }
