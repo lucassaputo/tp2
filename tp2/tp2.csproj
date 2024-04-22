@@ -46,11 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="AbmArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmArticulos.Designer.cs">
+      <DependentUpon>AbmArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Articulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulos.Designer.cs">
+      <DependentUpon>Articulos.cs</DependentUpon>
     </Compile>
     <Compile Include="FormCategoria.cs">
       <SubType>Form</SubType>
@@ -66,8 +72,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="AbmArticulos.resx">
+      <DependentUpon>AbmArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Articulos.resx">
+      <DependentUpon>Articulos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCategoria.resx">
       <DependentUpon>FormCategoria.cs</DependentUpon>
