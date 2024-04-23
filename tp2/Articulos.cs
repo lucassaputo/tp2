@@ -12,10 +12,10 @@ using Negocio;
 
 namespace tp2
 {
-    public partial class FormCatalogo : Form
+    public partial class Articulos : Form
     {
         private List<Articulo> listaArticulos;
-        public FormCatalogo()
+        public Articulos()
         {
             InitializeComponent();
         }
@@ -81,6 +81,16 @@ namespace tp2
         {
                 AbmArticulos formABM = new AbmArticulos();
                 formABM.ShowDialog();            
+        }
+
+        private void btnDetalleArticulo_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+            frmDetalles detalle = new frmDetalles(seleccionado);
+            detalle.ShowDialog();
+            Cargar();
         }
     }
 }

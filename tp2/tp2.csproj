@@ -70,16 +70,12 @@
     <Compile Include="FormMarca.Designer.cs">
       <DependentUpon>FormMarca.cs</DependentUpon>
     </Compile>
-
     <Compile Include="Form3Detalles.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form3Detalles.Designer.cs">
       <DependentUpon>Form3Detalles.cs</DependentUpon>
     </Compile>
-    <Compile Include="Imagen.cs" />
-    <Compile Include="Marca.cs" />
-
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AbmArticulos.resx">
