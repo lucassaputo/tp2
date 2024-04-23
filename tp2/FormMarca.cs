@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace tp2
 {
-    public partial class Form1 : Form
+    public partial class FormMarca : Form
     {
-        public Form1()
+        public FormMarca()
         {
             InitializeComponent();
         }

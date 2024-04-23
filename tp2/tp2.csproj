@@ -46,14 +46,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Articulo.cs" />
-    <Compile Include="Categoria.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="AbmArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmArticulos.Designer.cs">
+      <DependentUpon>AbmArticulos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Articulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Articulos.Designer.cs">
+      <DependentUpon>Articulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCategoria.Designer.cs">
+      <DependentUpon>FormCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMarca.Designer.cs">
+      <DependentUpon>FormMarca.cs</DependentUpon>
+    </Compile>
+
     <Compile Include="Form3Detalles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,10 +79,20 @@
     </Compile>
     <Compile Include="Imagen.cs" />
     <Compile Include="Marca.cs" />
+
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="AbmArticulos.resx">
+      <DependentUpon>AbmArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Articulos.resx">
+      <DependentUpon>Articulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCategoria.resx">
+      <DependentUpon>FormCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMarca.resx">
+      <DependentUpon>FormMarca.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form3Detalles.resx">
       <DependentUpon>Form3Detalles.cs</DependentUpon>
@@ -91,6 +118,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dominio\Dominio.csproj">
+      <Project>{452ee077-f006-4350-a273-ec96d690ed3f}</Project>
+      <Name>Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{514b6170-2b73-4777-bbb4-e8c9d99f059e}</Project>
+      <Name>Negocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
