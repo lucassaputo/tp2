@@ -76,5 +76,11 @@ namespace tp2
                 pibArticulos.Load("https://www.trecebits.com/wp-content/uploads/2019/07/imagen.jpg");
             }
         }
+
+        private void btnAgregarArticulo_Click(object sender, EventArgs e)
+        {
+                AbmArticulos formABM = new AbmArticulos();
+                formABM.ShowDialog();            
+        }
     }
 }
