@@ -45,7 +45,7 @@ namespace tp2
             }
             catch (Exception ex)
             {
-                pibVerDetalle.Load("https://www.trecebits.com/wp-content/uploads/2019/07/imagen.jpg");
+                pibVerDetalle.Load("https://img.freepik.com/vector-premium/no-hay-foto-disponible-icono-vector-simbolo-imagen-predeterminado-imagen-proximamente-sitio-web-o-aplicacion-movil_87543-10615.jpg?w=826g");
             }
         }
 

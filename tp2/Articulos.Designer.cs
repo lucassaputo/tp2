@@ -67,6 +67,7 @@
             this.dgvArticulos.RowTemplate.Height = 24;
             this.dgvArticulos.Size = new System.Drawing.Size(749, 283);
             this.dgvArticulos.TabIndex = 0;
+            this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
             // pibArticulos
             // 
