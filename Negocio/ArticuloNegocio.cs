@@ -28,15 +28,15 @@ namespace Negocio
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
+                    aux.Imagen = new Imagen();
+                    aux.Imagen.ID = (int)datos.Lector["ID"];
+                    aux.Imagen.UrlImagen = (string)datos.Lector["ImagenUrl"];
                     aux.Marca = new Marca();
                     aux.Marca.ID = (int)datos.Lector["IDMarca"];
                     aux.Marca.Descripcion = (string)datos.Lector["Marca"];
                     aux.Categoria = new Categoria();
                     aux.Categoria.ID = (int)datos.Lector["IDCategoria"];
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
-                    aux.Imagen = new Imagen();
-                    aux.Imagen.ID = (int)datos.Lector["ID"];
-                    aux.Imagen.UrlImagen = (string)datos.Lector["ImagenUrl"];
 
                     lista.Add(aux);
                 }
