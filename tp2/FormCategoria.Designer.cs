@@ -58,11 +58,11 @@
             // dgvCategorias
             // 
             this.dgvCategorias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCategorias.Location = new System.Drawing.Point(16, 12);
+            this.dgvCategorias.Location = new System.Drawing.Point(103, 12);
             this.dgvCategorias.Name = "dgvCategorias";
             this.dgvCategorias.RowHeadersWidth = 51;
             this.dgvCategorias.RowTemplate.Height = 24;
-            this.dgvCategorias.Size = new System.Drawing.Size(439, 291);
+            this.dgvCategorias.Size = new System.Drawing.Size(261, 291);
             this.dgvCategorias.TabIndex = 2;
             // 
             // lblAgregarMarca
@@ -131,7 +131,7 @@
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(204, 319);
+            this.lblCategoria.Location = new System.Drawing.Point(290, 319);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(52, 13);
             this.lblCategoria.TabIndex = 12;
@@ -140,7 +140,7 @@
             // lblIDCategoria
             // 
             this.lblIDCategoria.AutoSize = true;
-            this.lblIDCategoria.Location = new System.Drawing.Point(13, 319);
+            this.lblIDCategoria.Location = new System.Drawing.Point(35, 319);
             this.lblIDCategoria.Name = "lblIDCategoria";
             this.lblIDCategoria.Size = new System.Drawing.Size(91, 13);
             this.lblIDCategoria.TabIndex = 11;
@@ -155,7 +155,7 @@
             // 
             // txtIDCategoria
             // 
-            this.txtIDCategoria.Location = new System.Drawing.Point(16, 335);
+            this.txtIDCategoria.Location = new System.Drawing.Point(38, 335);
             this.txtIDCategoria.Name = "txtIDCategoria";
             this.txtIDCategoria.Size = new System.Drawing.Size(92, 20);
             this.txtIDCategoria.TabIndex = 9;
@@ -192,6 +192,7 @@
             this.Name = "FormCategoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Administrar Categorias";
+            this.Load += new System.EventHandler(this.FormCategoria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategorias)).EndInit();
             this.groupBoxABCcategorias.ResumeLayout(false);
             this.groupBoxABCcategorias.PerformLayout();

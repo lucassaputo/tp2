@@ -76,7 +76,6 @@
     <Compile Include="Form3Detalles.Designer.cs">
       <DependentUpon>Form3Detalles.cs</DependentUpon>
     </Compile>
-
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AbmArticulos.resx">
