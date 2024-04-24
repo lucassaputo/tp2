@@ -79,8 +79,8 @@ namespace tp2
 
         private void btnAgregarArticulo_Click(object sender, EventArgs e)
         {
-                AbmArticulos formABM = new AbmArticulos();
-                formABM.ShowDialog();            
+                /*AbmArticulos formABM = new AbmArticulos();
+                formABM.ShowDialog();            */
         }
     }
 }
