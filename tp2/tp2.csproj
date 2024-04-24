@@ -64,12 +64,19 @@
     <Compile Include="FormCategoria.Designer.cs">
       <DependentUpon>FormCategoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMarca.cs">
+    <Compile Include="FormMarcas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMarca.Designer.cs">
-      <DependentUpon>FormMarca.cs</DependentUpon>
+    <Compile Include="FormMarcas.Designer.cs">
+      <DependentUpon>FormMarcas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form3Detalles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3Detalles.Designer.cs">
+      <DependentUpon>Form3Detalles.cs</DependentUpon>
+    </Compile>
+
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AbmArticulos.resx">
@@ -81,8 +88,8 @@
     <EmbeddedResource Include="FormCategoria.resx">
       <DependentUpon>FormCategoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMarca.resx">
-      <DependentUpon>FormMarca.cs</DependentUpon>
+    <EmbeddedResource Include="FormMarcas.resx">
+      <DependentUpon>FormMarcas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

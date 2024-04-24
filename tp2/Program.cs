@@ -20,7 +20,7 @@ namespace tp2
             //Application.Run(new Form1());
             //Application.Run(new frmDetalles()); // para testear el form3Detalles, luego dejar el Form1.
 
-            Application.Run(new FormCatalogo());
+            Application.Run(new Articulos());
 
         }
     }
