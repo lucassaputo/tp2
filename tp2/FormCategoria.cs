@@ -16,5 +16,11 @@ namespace tp2
         {
             InitializeComponent();
         }
+
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
