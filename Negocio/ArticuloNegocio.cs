@@ -27,9 +27,13 @@ namespace Negocio
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.Imagen = new Imagen();
-                    aux.Imagen.ID = (int)datos.Lector["ID"];
-                    aux.Imagen.UrlImagen = (string)datos.Lector["ImagenUrl"];
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                        aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
+
+                    /*aux.UrlImagen = new Imagen();
+                    aux.UrlImagen.ID = (int)datos.Lector["ID"];
+                    aux.UrlImagen = (string)datos.Lector["ImagenUrl"];*/
+
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     aux.Marca = new Marca();
                     aux.Marca.ID = (int)datos.Lector["IDMarca"];
@@ -58,13 +62,13 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio)values( @Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @ImagenUrl, @Precio)");
+                datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio)values( @Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @UrlImagen, @Precio)");
                 datos.setearParametro("@Codigo", nuevo.Codigo);
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@IdMarca", nuevo.Marca.ID);
                 datos.setearParametro("@IdCategoria", nuevo.Categoria.ID);
-                //datos.setearParametro("@ImagenUrl", nuevo.ImagenUrl);
+                datos.setearParametro("@UrlImagen", nuevo.UrlImagen);
                 datos.setearParametro("@Precio", nuevo.Precio);
                 datos.ejecutarAccion();
             }
@@ -83,11 +87,11 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update ARTICULOS set Codigo = @Codigo, Nombre = @nombre, Descripcion = @descripcion, ImagenUrl = @ImagenUrl, Precio=@Precio, IdMarca = @IdMarca, IdCategoria = @IdCategoria Where Id = @id");
+                datos.setearConsulta("update ARTICULOS set Codigo = @Codigo, Nombre = @nombre, Descripcion = @descripcion, ImagenUrl = @UrlImagen, Precio=@Precio, IdMarca = @IdMarca, IdCategoria = @IdCategoria Where Id = @id");
                 datos.setearParametro("@Codigo", aux.Codigo);
                 datos.setearParametro("@nombre", aux.Nombre);
                 datos.setearParametro("@descripcion", aux.Descripcion);
-                //datos.setearParametro("@ImagenUrl", aux.ImagenUrl);
+                datos.setearParametro("@UrlImagen", aux.UrlImagen);
                 datos.setearParametro("@Precio", aux.Precio);
                 datos.setearParametro("@IdMarca", aux.Marca.ID);
                 datos.setearParametro("@IdCategoria", aux.Categoria.ID);

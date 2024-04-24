@@ -51,7 +51,7 @@ namespace tp2
                 dgvArticulos.DataSource = listaArticulos;
                 ocultarColumnas();
 
-                CargarImagen(listaArticulos[0].Imagen.UrlImagen);
+                CargarImagen(listaArticulos[0].UrlImagen);
             }
             catch (Exception ex)
             {
@@ -61,7 +61,7 @@ namespace tp2
 
         private void ocultarColumnas()
         {
-            dgvArticulos.Columns["Imagen"].Visible = false;
+            dgvArticulos.Columns["UrlImagen"].Visible = false;
             dgvArticulos.Columns["Id"].Visible = false;
         }
 
@@ -98,7 +98,7 @@ namespace tp2
             if(dgvArticulos.CurrentRow != null)
             {
                 Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-                CargarImagen(seleccionado.Imagen.UrlImagen);
+                CargarImagen(seleccionado.UrlImagen);
             }
         }
 

@@ -10,7 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
+using System.Configuration;
 namespace tp2
 {
     public partial class AbmArticulos : Form
@@ -46,8 +47,8 @@ namespace tp2
                     txtCodigo.Text = articulo.Codigo.ToString();
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
-                    txtUrlImagen.Text = articulo.Imagen.UrlImagen;
-                    cargarImagen(articulo.Imagen.UrlImagen);
+                    txtUrlImagen.Text = articulo.UrlImagen;
+                    cargarImagen(articulo.UrlImagen);
                     txtPrecio.Text = articulo.Precio.ToString("#0.00", System.Globalization.CultureInfo.InvariantCulture);
                     cboMarca.SelectedValue = articulo.Marca.ID;
                     cboCategoria.SelectedValue = articulo.Categoria.ID;
@@ -55,7 +56,7 @@ namespace tp2
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString());
                 MessageBox.Show("Error al cargar ventana.");
             }
         }
@@ -129,7 +130,7 @@ namespace tp2
                 articulo.Codigo = txtCodigo.Text;
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
-                articulo.Imagen.UrlImagen = txtUrlImagen.Text;
+                articulo.UrlImagen = txtUrlImagen.Text;
                 articulo.Precio = pasarADecimal(txtPrecio.Text);
                 articulo.Marca = (Marca)cboMarca.SelectedItem;
                 articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
@@ -148,14 +149,14 @@ namespace tp2
 
                 //Guardo imagen si la levantó localmente:
                 if (archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP")))
-                    //File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
 
                 Close();
 
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString());
                 MessageBox.Show("Error al guardar/modificar. Intente nuevamente.");
             }
         }
