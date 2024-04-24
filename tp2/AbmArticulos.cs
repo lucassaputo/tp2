@@ -17,6 +17,10 @@ namespace tp2
     {
         private Articulo articulo = null;
         private OpenFileDialog archivo = null;
+        public AbmArticulos()
+        {
+            InitializeComponent();           
+        }
         public AbmArticulos(Articulo articulo)
         {
             InitializeComponent();
@@ -30,10 +34,10 @@ namespace tp2
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
             try
             {
-              //  cboMarca.DataSource = marcaNegocio.listar();
+                cboMarca.DataSource = marcaNegocio.listar();
                 cboMarca.ValueMember = "Id";
                 cboMarca.DisplayMember = "Descripcion";
-               // cboCategoria.DataSource = categoriaNegocio.listar();
+                cboCategoria.DataSource = categoriaNegocio.listar();
                 cboCategoria.ValueMember = "Id";
                 cboCategoria.DisplayMember = "Descripcion";
 
@@ -42,8 +46,8 @@ namespace tp2
                     txtCodigo.Text = articulo.Codigo.ToString();
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
-                  //  txtUrlImagen.Text = articulo.Imagen;
-                 //   cargarImagen(articulo.Imagen);
+                    txtUrlImagen.Text = articulo.Imagen.UrlImagen;
+                    cargarImagen(articulo.Imagen.UrlImagen);
                     txtPrecio.Text = articulo.Precio.ToString("#0.00", System.Globalization.CultureInfo.InvariantCulture);
                     cboMarca.SelectedValue = articulo.Marca.ID;
                     cboCategoria.SelectedValue = articulo.Categoria.ID;
@@ -125,19 +129,20 @@ namespace tp2
                 articulo.Codigo = txtCodigo.Text;
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
-               // articulo.Imagen = txtUrlImagen.Text;
+                articulo.Imagen.UrlImagen = txtUrlImagen.Text;
                 articulo.Precio = pasarADecimal(txtPrecio.Text);
                 articulo.Marca = (Marca)cboMarca.SelectedItem;
                 articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
 
                 if (articulo.ID != 0)
                 {
-                   // negocio.modificar(articulo);
+                    negocio.modificar(articulo);
+                    
                     MessageBox.Show("Modificado exitosamente");
                 }
                 else
                 {
-                    //negocio.agregar(articulo);
+                    negocio.agregar(articulo);
                     MessageBox.Show("Agregado exitosamente");
                 }
 

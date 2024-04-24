@@ -79,8 +79,8 @@ namespace tp2
 
         private void btnAgregarArticulo_Click(object sender, EventArgs e)
         {
-                /*AbmArticulos formABM = new AbmArticulos();
-                formABM.ShowDialog();            */
+                AbmArticulos formABM = new AbmArticulos();
+                formABM.ShowDialog();           
         }
 
         private void btnDetalleArticulo_Click(object sender, EventArgs e)
@@ -99,6 +99,23 @@ namespace tp2
             {
                 Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
                 CargarImagen(seleccionado.Imagen.UrlImagen);
+            }
+        }
+
+        private void btnModificarArticulo_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            if (dgvArticulos.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un articulo en el listado.");
+            }
+            else
+            {
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+                AbmArticulos modificar = new AbmArticulos(seleccionado);
+                modificar.ShowDialog();
+                //cargar();
             }
         }
     }
