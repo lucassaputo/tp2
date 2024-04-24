@@ -28,7 +28,7 @@ namespace tp2
             Text = "Modificar Articulo";
         }
 
-        private void frmAcciones_Load(object sender, EventArgs e)
+        private void form_Load(object sender, EventArgs e)
         {
             MarcaNegocio marcaNegocio = new MarcaNegocio();
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();

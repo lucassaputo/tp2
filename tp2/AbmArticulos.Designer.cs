@@ -237,6 +237,7 @@
             this.Controls.Add(this.lblCodigo);
             this.Name = "AbmArticulos";
             this.Text = "AbmArticulos";
+            this.Load += new System.EventHandler(this.form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
