@@ -36,7 +36,7 @@
             this.btnAgregarCategoria = new System.Windows.Forms.Button();
             this.btnModificarCategoria = new System.Windows.Forms.Button();
             this.btnEliminarCategoria = new System.Windows.Forms.Button();
-            this.lblCategoria = new System.Windows.Forms.Label();
+            this.lblCategoriaSeleccionada = new System.Windows.Forms.Label();
             this.lblIDCategoria = new System.Windows.Forms.Label();
             this.txtCategoria = new System.Windows.Forms.TextBox();
             this.txtIDCategoria = new System.Windows.Forms.TextBox();
@@ -128,24 +128,25 @@
             this.btnEliminarCategoria.TabIndex = 8;
             this.btnEliminarCategoria.Text = "Eliminar Categoria";
             this.btnEliminarCategoria.UseVisualStyleBackColor = false;
+            this.btnEliminarCategoria.Click += new System.EventHandler(this.btnEliminarCategoria_Click);
             // 
-            // lblCategoria
+            // lblCategoriaSeleccionada
             // 
-            this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(290, 319);
-            this.lblCategoria.Name = "lblCategoria";
-            this.lblCategoria.Size = new System.Drawing.Size(52, 13);
-            this.lblCategoria.TabIndex = 12;
-            this.lblCategoria.Text = "Categoria";
+            this.lblCategoriaSeleccionada.AutoSize = true;
+            this.lblCategoriaSeleccionada.Location = new System.Drawing.Point(280, 319);
+            this.lblCategoriaSeleccionada.Name = "lblCategoriaSeleccionada";
+            this.lblCategoriaSeleccionada.Size = new System.Drawing.Size(120, 13);
+            this.lblCategoriaSeleccionada.TabIndex = 12;
+            this.lblCategoriaSeleccionada.Text = "Categoria Seleccionada";
             // 
             // lblIDCategoria
             // 
             this.lblIDCategoria.AutoSize = true;
-            this.lblIDCategoria.Location = new System.Drawing.Point(35, 319);
+            this.lblIDCategoria.Location = new System.Drawing.Point(53, 319);
             this.lblIDCategoria.Name = "lblIDCategoria";
-            this.lblIDCategoria.Size = new System.Drawing.Size(91, 13);
+            this.lblIDCategoria.Size = new System.Drawing.Size(65, 13);
             this.lblIDCategoria.TabIndex = 11;
-            this.lblIDCategoria.Text = "ID de la categoria";
+            this.lblIDCategoria.Text = "ID categoria";
             // 
             // txtCategoria
             // 
@@ -182,7 +183,7 @@
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(471, 483);
             this.Controls.Add(this.groupBoxABCcategorias);
-            this.Controls.Add(this.lblCategoria);
+            this.Controls.Add(this.lblCategoriaSeleccionada);
             this.Controls.Add(this.lblIDCategoria);
             this.Controls.Add(this.txtCategoria);
             this.Controls.Add(this.txtIDCategoria);
@@ -212,7 +213,7 @@
         private System.Windows.Forms.Button btnAgregarCategoria;
         private System.Windows.Forms.Button btnModificarCategoria;
         private System.Windows.Forms.Button btnEliminarCategoria;
-        private System.Windows.Forms.Label lblCategoria;
+        private System.Windows.Forms.Label lblCategoriaSeleccionada;
         private System.Windows.Forms.Label lblIDCategoria;
         private System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.TextBox txtIDCategoria;
