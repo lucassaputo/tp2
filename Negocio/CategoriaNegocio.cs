@@ -38,5 +38,30 @@ namespace Negocio
                 datos.cerrarConexion(); // cierro la conexion a la BD
             }
         }
+
+
+
+
+        public void eliminar(int id)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("DELETE FROM CATEGORIAS WHERE ID = @ID"); // le pasamos la query DELETE
+                datos.setearParametro("@ID", id); // seteamos el parametro 
+                datos.ejecutarAccion(); // finalmente ejecutamos la accion y va a eliminar el registro que tenga el id que le pasamos
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

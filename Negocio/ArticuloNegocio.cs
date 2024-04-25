@@ -27,9 +27,13 @@ namespace Negocio
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.Imagen = new Imagen();
-                    aux.Imagen.ID = (int)datos.Lector["ID"];
-                    aux.Imagen.UrlImagen = (string)datos.Lector["ImagenUrl"];
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                        aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
+
+                    /*aux.UrlImagen = new Imagen();
+                    aux.UrlImagen.ID = (int)datos.Lector["ID"];
+                    aux.UrlImagen = (string)datos.Lector["ImagenUrl"];*/
+
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     aux.Marca = new Marca();
                     aux.Marca.ID = (int)datos.Lector["IDMarca"];
@@ -53,16 +57,72 @@ namespace Negocio
             }
         }
 
+        public void agregar(Articulo nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio)values( @Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @UrlImagen, @Precio)");
+                datos.setearParametro("@Codigo", nuevo.Codigo);
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+                datos.setearParametro("@Descripcion", nuevo.Descripcion);
+                datos.setearParametro("@IdMarca", nuevo.Marca.ID);
+                datos.setearParametro("@IdCategoria", nuevo.Categoria.ID);
+                datos.setearParametro("@UrlImagen", nuevo.UrlImagen);
+                datos.setearParametro("@Precio", nuevo.Precio);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void modificar(Articulo aux)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update ARTICULOS set Codigo = @Codigo, Nombre = @nombre, Descripcion = @descripcion, ImagenUrl = @UrlImagen, Precio=@Precio, IdMarca = @IdMarca, IdCategoria = @IdCategoria Where Id = @id");
+                datos.setearParametro("@Codigo", aux.Codigo);
+                datos.setearParametro("@nombre", aux.Nombre);
+                datos.setearParametro("@descripcion", aux.Descripcion);
+                datos.setearParametro("@UrlImagen", aux.UrlImagen);
+                datos.setearParametro("@Precio", aux.Precio);
+                datos.setearParametro("@IdMarca", aux.Marca.ID);
+                datos.setearParametro("@IdCategoria", aux.Categoria.ID);
+                datos.setearParametro("@id", aux.ID);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
         public List<Articulo> filtrar(string campo, string criterio, string filtro)
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
+
 
             try
             {
                 string consulta = "select A.ID, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.ID as IDMarca, M.Descripcion as Marca, C.ID as IDCategoria, C.Descripcion as Categoria, I.ImagenUrl from ARTICULOS as A inner join MARCAS as M on A.IDMarca = M.ID inner join CATEGORIAS as C on A.IDCategoria = C.ID inner join Imagenes i on a.IdCategoria = c.Id and a.IdMarca = m.Id and a.Id = i.IdArticulo and ";
                 
                 if(campo == "Precio")
+
                 {
                     switch (criterio)
                     {
@@ -77,10 +137,12 @@ namespace Negocio
                             break;
                     }
                 }else if(campo == "Nombre")
+
                 {
                     switch (criterio)
                     {
                         case "Comienza con":
+
                             consulta += "A.Nombre like '" + filtro + "%'";
                             break;
                         case "Termina con":
@@ -88,6 +150,7 @@ namespace Negocio
                             break;
                         default:
                             consulta += "A.Nombre like '%" + filtro + "%'";
+
                             break;
                     }
                 }
@@ -96,7 +159,9 @@ namespace Negocio
                     switch (criterio)
                     {
                         case "Comienza con":
+
                             consulta += "A.Descripcion like '" + filtro + "%'";
+
                             break;
                         case "Termina con":
                             consulta += "A.Descripcion like '%" + filtro + "'";
@@ -120,6 +185,7 @@ namespace Negocio
                     aux.Imagen = new Imagen();
                     aux.Imagen.ID = (int)datos.Lector["ID"];
                     aux.Imagen.UrlImagen = (string)datos.Lector["ImagenUrl"];
+
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     aux.Marca = new Marca();
                     aux.Marca.ID = (int)datos.Lector["IdMarca"];
@@ -137,9 +203,27 @@ namespace Negocio
             {
                 throw ex;
             }
+
             finally
             {
                 datos.cerrarConexion();
+
+        }
+
+        public void eliminar(int id)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("delete from ARTICULOS where id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
             }
         }
     }

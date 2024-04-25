@@ -10,13 +10,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
+using System.Configuration;
 namespace tp2
 {
     public partial class AbmArticulos : Form
     {
         private Articulo articulo = null;
         private OpenFileDialog archivo = null;
+        public AbmArticulos()
+        {
+            InitializeComponent();           
+        }
         public AbmArticulos(Articulo articulo)
         {
             InitializeComponent();
@@ -24,16 +29,16 @@ namespace tp2
             Text = "Modificar Articulo";
         }
 
-        private void frmAcciones_Load(object sender, EventArgs e)
+        private void form_Load(object sender, EventArgs e)
         {
             MarcaNegocio marcaNegocio = new MarcaNegocio();
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
             try
             {
-              //  cboMarca.DataSource = marcaNegocio.listar();
+                cboMarca.DataSource = marcaNegocio.listar();
                 cboMarca.ValueMember = "Id";
                 cboMarca.DisplayMember = "Descripcion";
-               // cboCategoria.DataSource = categoriaNegocio.listar();
+                cboCategoria.DataSource = categoriaNegocio.listar();
                 cboCategoria.ValueMember = "Id";
                 cboCategoria.DisplayMember = "Descripcion";
 
@@ -42,8 +47,8 @@ namespace tp2
                     txtCodigo.Text = articulo.Codigo.ToString();
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
-                  //  txtUrlImagen.Text = articulo.Imagen;
-                 //   cargarImagen(articulo.Imagen);
+                    txtUrlImagen.Text = articulo.UrlImagen;
+                    cargarImagen(articulo.UrlImagen);
                     txtPrecio.Text = articulo.Precio.ToString("#0.00", System.Globalization.CultureInfo.InvariantCulture);
                     cboMarca.SelectedValue = articulo.Marca.ID;
                     cboCategoria.SelectedValue = articulo.Categoria.ID;
@@ -51,7 +56,7 @@ namespace tp2
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString());
                 MessageBox.Show("Error al cargar ventana.");
             }
         }
@@ -125,32 +130,33 @@ namespace tp2
                 articulo.Codigo = txtCodigo.Text;
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
-               // articulo.Imagen = txtUrlImagen.Text;
+                //articulo.UrlImagen = txtUrlImagen.Text;
                 articulo.Precio = pasarADecimal(txtPrecio.Text);
                 articulo.Marca = (Marca)cboMarca.SelectedItem;
                 articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
 
                 if (articulo.ID != 0)
                 {
-                   // negocio.modificar(articulo);
+                    negocio.modificar(articulo);
+                    
                     MessageBox.Show("Modificado exitosamente");
                 }
                 else
                 {
-                    //negocio.agregar(articulo);
+                    negocio.agregar(articulo);
                     MessageBox.Show("Agregado exitosamente");
                 }
 
                 //Guardo imagen si la levantó localmente:
                 if (archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP")))
-                    //File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
 
                 Close();
 
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.ToString());
                 MessageBox.Show("Error al guardar/modificar. Intente nuevamente.");
             }
         }
