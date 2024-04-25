@@ -39,6 +39,47 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public void agregar(Imagen nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenUrl)values( @idArticulo, @urlImagen)");
+                datos.setearParametro("@idArticulo", nuevo.ID);
+                datos.setearParametro("@urlImagen", nuevo.UrlImagen);                
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+     
+        public void modificar(Imagen aux)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update IMAGENES set UrlImagen = @urlImagen Where Id = @id");
+                datos.setearParametro("@id", aux.ID);
+                datos.setearParametro("@urlImagen", aux.UrlImagen);
+                
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
     }
 }

@@ -81,6 +81,7 @@ namespace tp2
             catch (Exception ex)
             {
                 pibArticulos.Load("https://img.freepik.com/vector-premium/no-hay-foto-disponible-icono-vector-simbolo-imagen-predeterminado-imagen-proximamente-sitio-web-o-aplicacion-movil_87543-10615.jpg?w=826");
+                //pibArticulos.Load("https://intercompras.com/product_thumb_keepratio_2.php?img=images/product/SONY_KDL-55W950A.jpg&w=650&h=450");
                 //pibArticulos.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
             }
         }
@@ -107,12 +108,16 @@ namespace tp2
             {
                 Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
                 //CargarImagen(seleccionado.UrlImagen);
+                //MessageBox.Show(Convert.ToString(seleccionado.ID));
                 if (seleccionado.Imagenes.Count > 0)
                 {
+                   // MessageBox.Show("11111");
+                    //MessageBox.Show(seleccionado.Imagenes[0].UrlImagen);
                     CargarImagen(seleccionado.Imagenes[0].UrlImagen);
                 }
                 else
                 {
+                   // MessageBox.Show("222222");
                     CargarImagen("XXX");
                 }
             }

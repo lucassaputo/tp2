@@ -164,11 +164,13 @@ namespace Negocio
             int id=-1;
             try
             {
-                datos.setearConsulta("SELECT TOP 1 * FROM ARTICULOS ORDER BY Id DESC");
+
+                datos.setearConsulta("SELECT TOP 1 * FROM ARTICULOS ORDER BY ID DESC");
+
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
-                    Articulo aux = new Articulo();
+                    //Articulo aux = new Articulo();
                     id = (int)datos.Lector["ID"];
                 }
                 return id;

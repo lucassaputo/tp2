@@ -182,6 +182,10 @@ namespace tp2
                 {
                     negocioArticulo.agregar2(articulo);
                     id = negocioArticulo.buscarUltimo();
+                    if (articulo.Imagenes.Count > 0)
+                    {
+                        //guardar con for?
+                    }
                     MessageBox.Show("Agregado exitosamente" + id);
                 }
 
