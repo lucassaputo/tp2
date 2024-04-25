@@ -12,11 +12,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Configuration;
+using static System.Net.Mime.MediaTypeNames;
 namespace tp2
 {
     public partial class AbmArticulos : Form
     {
         private Articulo articulo = null;
+        private List<Imagen> imagenes;
         private OpenFileDialog archivo = null;
         public AbmArticulos()
         {
@@ -49,6 +51,7 @@ namespace tp2
                     txtDescripcion.Text = articulo.Descripcion;
                     txtUrlImagen.Text = articulo.UrlImagen;
                     cargarImagen(articulo.UrlImagen);
+                    //cargarImagenes(articulo.ID);
                     txtPrecio.Text = articulo.Precio.ToString("#0.00", System.Globalization.CultureInfo.InvariantCulture);
                     cboMarca.SelectedValue = articulo.Marca.ID;
                     cboCategoria.SelectedValue = articulo.Categoria.ID;
@@ -63,6 +66,29 @@ namespace tp2
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+        private void cargarImagenes(int id)
+        {
+            ImagenNegocio negocioImagen = new ImagenNegocio();
+       
+                //imagenes = negocioImagen.listar(id);
+                //MessageBox.Show(imagenes[0].UrlImagen);
+                //cargarImagen(imagenes[0].UrlImagen);
+                //cargarImagen("xxxxx");
+
+
+        }
+        private void cargarImagen(string imag)
+        {
+            try
+            {
+                pbxArticulo.Load(imag);
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.ToString());
+                pbxArticulo.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
         }
 
         private bool validarArticulo()
@@ -166,17 +192,7 @@ namespace tp2
             cargarImagen(txtUrlImagen.Text);
         }
 
-        private void cargarImagen(string imagen)
-        {
-            try
-            {
-                pbxArticulo.Load(imagen);
-            }
-            catch (Exception ex)
-            {
-                pbxArticulo.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
-            }
-        }
+
 
         private void btnAgregarImagen_Click(object sender, EventArgs e)
         {
