@@ -65,7 +65,7 @@ namespace Negocio
             ImagenNegocio negocioImagen = new ImagenNegocio();
             try
             {
-                datos.setearConsulta("select A.ID, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.ID as IDMarca, M.Descripcion as Marca, C.ID as IDCategoria, C.Descripcion as Categoria, I.ImagenUrl from ARTICULOS as A inner join MARCAS as M on A.IDMarca = M.ID inner join CATEGORIAS as C on A.IDCategoria = C.ID inner join Imagenes i on a.IdCategoria = c.Id and a.IdMarca = m.Id and a.Id = i.IdArticulo");
+                datos.setearConsulta("select A.ID, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.ID as IDMarca, M.Descripcion as Marca, C.ID as IDCategoria, C.Descripcion as Categoria from ARTICULOS as A inner join MARCAS as M on A.IDMarca = M.ID inner join CATEGORIAS as C on A.IDCategoria = C.ID");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -164,11 +164,11 @@ namespace Negocio
             int id=-1;
             try
             {
-                datos.setearConsulta("SELECT TOP 1 * FROM ARTICULOS ORDER BY Id DESC");
-                datos.ejecutarAccion();
+                datos.setearConsulta("SELECT TOP 1 * FROM ARTICULOS ORDER BY ID DESC");
+                datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
-                    Articulo aux = new Articulo();
+                    //Articulo aux = new Articulo();
                     id = (int)datos.Lector["ID"];
                 }
                 return id;
