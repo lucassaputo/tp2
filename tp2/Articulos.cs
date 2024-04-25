@@ -51,7 +51,7 @@ namespace tp2
                 dgvArticulos.DataSource = listaArticulos;
                 ocultarColumnas();
 
-                CargarImagen(listaArticulos[0].Imagen.UrlImagen);
+                CargarImagen(listaArticulos[0].UrlImagen);
             }
             catch (Exception ex)
             {
@@ -61,7 +61,7 @@ namespace tp2
 
         private void ocultarColumnas()
         {
-            dgvArticulos.Columns["Imagen"].Visible = false;
+            dgvArticulos.Columns["UrlImagen"].Visible = false;
             dgvArticulos.Columns["Id"].Visible = false;
         }
 
@@ -79,8 +79,8 @@ namespace tp2
 
         private void btnAgregarArticulo_Click(object sender, EventArgs e)
         {
-                /*AbmArticulos formABM = new AbmArticulos();
-                formABM.ShowDialog();            */
+                AbmArticulos formABM = new AbmArticulos();
+                formABM.ShowDialog();           
         }
 
         private void btnDetalleArticulo_Click(object sender, EventArgs e)
@@ -98,7 +98,24 @@ namespace tp2
             if(dgvArticulos.CurrentRow != null)
             {
                 Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-                CargarImagen(seleccionado.Imagen.UrlImagen);
+                CargarImagen(seleccionado.UrlImagen);
+            }
+        }
+
+        private void btnModificarArticulo_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            if (dgvArticulos.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un articulo en el listado.");
+            }
+            else
+            {
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+                AbmArticulos modificar = new AbmArticulos(seleccionado);
+                modificar.ShowDialog();
+                //cargar();
             }
         }
 
