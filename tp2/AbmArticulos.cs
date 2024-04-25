@@ -156,6 +156,7 @@ namespace tp2
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             ArticuloNegocio negocioArticulo = new ArticuloNegocio();
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
             int id;
             try
             {
@@ -175,7 +176,20 @@ namespace tp2
                 if (articulo.ID != 0)
                 {
                     negocioArticulo.modificar(articulo);
-                    
+                    if (articulo.Imagenes.Count > 0)
+                    {
+                        for (int i = 0; i < articulo.Imagenes.Count; i++)
+                        {
+                            if (articulo.Imagenes[i].ID > -1)
+                            {
+                                imagenNegocio.modificar(articulo.Imagenes[i]);
+                            }
+                            else
+                            {
+                                imagenNegocio.agregar(articulo.Imagenes[i]);
+                            }
+                        }
+                    }
                     MessageBox.Show("Modificado exitosamente");
                 }
                 else
@@ -184,7 +198,17 @@ namespace tp2
                     id = negocioArticulo.buscarUltimo();
                     if (articulo.Imagenes.Count > 0)
                     {
-                        //guardar con for?
+                        for(int i = 0; i < articulo.Imagenes.Count; i++)
+                        {
+                            if (articulo.Imagenes[i].ID > -1)
+                            {
+                                imagenNegocio.modificar(articulo.Imagenes[i]);
+                            }
+                            else
+                            {
+                                imagenNegocio.agregar(articulo.Imagenes[i]);
+                            }
+                        }
                     }
                     MessageBox.Show("Agregado exitosamente" + id);
                 }
