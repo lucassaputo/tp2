@@ -42,7 +42,7 @@
             this.lblBuscarAvanzado = new System.Windows.Forms.Label();
             this.cboCampo = new System.Windows.Forms.ComboBox();
             this.cboCriterio = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtFiltroAvanzado = new System.Windows.Forms.TextBox();
             this.btnBuscarAvanzado = new System.Windows.Forms.Button();
             this.btnMenuAgregarArt = new System.Windows.Forms.ToolStripButton();
             this.btnMenuModificarArt = new System.Windows.Forms.ToolStripButton();
@@ -183,6 +183,7 @@
             this.cboCampo.Name = "cboCampo";
             this.cboCampo.Size = new System.Drawing.Size(121, 24);
             this.cboCampo.TabIndex = 11;
+            this.cboCampo.SelectedIndexChanged += new System.EventHandler(this.cboCampo_SelectedIndexChanged);
             // 
             // cboCriterio
             // 
@@ -193,13 +194,13 @@
             this.cboCriterio.Size = new System.Drawing.Size(152, 24);
             this.cboCriterio.TabIndex = 12;
             // 
-            // textBox1
+            // txtFiltroAvanzado
             // 
-            this.textBox1.Location = new System.Drawing.Point(499, 471);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(209, 22);
-            this.textBox1.TabIndex = 13;
+            this.txtFiltroAvanzado.Location = new System.Drawing.Point(499, 471);
+            this.txtFiltroAvanzado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtFiltroAvanzado.Name = "txtFiltroAvanzado";
+            this.txtFiltroAvanzado.Size = new System.Drawing.Size(209, 22);
+            this.txtFiltroAvanzado.TabIndex = 13;
             // 
             // btnBuscarAvanzado
             // 
@@ -210,6 +211,7 @@
             this.btnBuscarAvanzado.TabIndex = 14;
             this.btnBuscarAvanzado.Text = "Buscar";
             this.btnBuscarAvanzado.UseVisualStyleBackColor = true;
+            this.btnBuscarAvanzado.Click += new System.EventHandler(this.btnBuscarAvanzado_Click);
             // 
             // btnMenuAgregarArt
             // 
@@ -296,7 +298,7 @@
             this.Controls.Add(this.btnMarcas);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.btnBuscarAvanzado);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtFiltroAvanzado);
             this.Controls.Add(this.cboCriterio);
             this.Controls.Add(this.cboCampo);
             this.Controls.Add(this.lblBuscarAvanzado);
@@ -341,7 +343,7 @@
         private System.Windows.Forms.Label lblBuscarAvanzado;
         private System.Windows.Forms.ComboBox cboCampo;
         private System.Windows.Forms.ComboBox cboCriterio;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtFiltroAvanzado;
         private System.Windows.Forms.Button btnBuscarAvanzado;
         private System.Windows.Forms.ToolStripButton btnMenuAgregarArt;
         private System.Windows.Forms.ToolStripButton btnMenuModificarArt;
