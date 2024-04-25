@@ -54,7 +54,7 @@ namespace tp2
                 datos.setearConsulta("insert into CATEGORIAS (Descripcion) values (@Descripcion)"); 
                 datos.setearParametro("@Descripcion", txtCategoria.Text); // seteo el valor del parametro descipcion con el valor del textbox txtCategoria
                 datos.ejecutarAccion(); //ejecuto la accion de agrear a la BD
-                Cargar(); // finalmente lo cargo. A listo
+                Cargar(); // finalmente lo cargo y muestro la grilla actualizada
             }
             catch (Exception ex)
             {
@@ -72,7 +72,14 @@ namespace tp2
             Categoria seleccionada = (Categoria)dgvCategorias.CurrentRow.DataBoundItem; // selecciono la CATEGORIA de la DGV que quiero eliminar
             try
             {
-                negocio.eliminar(seleccionada.ID); // aca le paso de la categoria seleecionada, el ID
+               DialogResult respuesta = MessageBox.Show("Seguro queres eliminar la categoria: " + seleccionada.Descripcion + "?", "Eliminar Categoria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); // mensaje modal de confirmacion. El show es un method que devuelve un DialogResult
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    negocio.eliminar(seleccionada.ID); // aca le paso de la categoria seleecionada, el ID
+                    Cargar(); // actualizo y muestro la grilla
+                }
+                
             }
             catch (Exception x)
             {

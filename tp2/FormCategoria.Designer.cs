@@ -135,9 +135,9 @@
             this.lblCategoriaSeleccionada.AutoSize = true;
             this.lblCategoriaSeleccionada.Location = new System.Drawing.Point(280, 319);
             this.lblCategoriaSeleccionada.Name = "lblCategoriaSeleccionada";
-            this.lblCategoriaSeleccionada.Size = new System.Drawing.Size(120, 13);
+            this.lblCategoriaSeleccionada.Size = new System.Drawing.Size(111, 13);
             this.lblCategoriaSeleccionada.TabIndex = 12;
-            this.lblCategoriaSeleccionada.Text = "Categoria Seleccionada";
+            this.lblCategoriaSeleccionada.Text = "Descripcion Categoria";
             // 
             // lblIDCategoria
             // 
