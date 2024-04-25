@@ -33,7 +33,7 @@ namespace tp2
 
         private void Cargar()
         {
-            CategoriaNegocio negocio = new CategoriaNegocio(); 
+            CategoriaNegocio negocio = new CategoriaNegocio();
             try
             {
                 dgvCategorias.DataSource = negocio.listar();
@@ -57,7 +57,7 @@ namespace tp2
 
             try
             {
-                datos.setearConsulta("insert into CATEGORIAS (Descripcion) values (@Descripcion)"); 
+                datos.setearConsulta("insert into CATEGORIAS (Descripcion) values (@Descripcion)");
                 datos.setearParametro("@Descripcion", txtCategoria.Text); // seteo el valor del parametro descipcion con el valor del textbox txtCategoria
                 datos.ejecutarAccion(); //ejecuto la accion de agrear a la BD
                 Cargar(); // finalmente lo cargo y muestro la grilla actualizada
@@ -78,14 +78,14 @@ namespace tp2
             Categoria seleccionada = (Categoria)dgvCategorias.CurrentRow.DataBoundItem; // selecciono la CATEGORIA de la DGV que quiero eliminar
             try
             {
-               DialogResult respuesta = MessageBox.Show("Seguro queres eliminar la categoria: " + seleccionada.Descripcion + "?", "Eliminar Categoria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); // mensaje modal de confirmacion. El show es un method que devuelve un DialogResult
+                DialogResult respuesta = MessageBox.Show("Seguro queres eliminar la categoria: " + seleccionada.Descripcion + "?", "Eliminar Categoria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); // mensaje modal de confirmacion. El show es un method que devuelve un DialogResult
 
                 if (respuesta == DialogResult.Yes)
                 {
                     negocio.eliminar(seleccionada.ID); // aca le paso de la categoria seleecionada, el ID
                     Cargar(); // actualizo y muestro la grilla
                 }
-                
+
             }
             catch (Exception x)
             {
@@ -100,15 +100,21 @@ namespace tp2
         {
             //Categoria seleccionada = (Categoria)dgvCategorias.CurrentRow.DataBoundItem; // selecciono la CATEGORIA de la DGV que quiero modificar
 
-            AccesoDatos datos = new AccesoDatos(); 
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("update CATEGORIAS set Descripcion = @Descripcion where ID = @ID"); // le paso la query de update
-                datos.setearParametro("@ID", txtIDCategoria.Text); // seteo el parametro ID con el valor del txtID
-                datos.setearParametro("@Descripcion", txtCategoria.Text); // seteo el parametro Descripcion con el valor del txtCategoria
-                datos.ejecutarAccion(); // ejecuto la accion de modificar el registro
-                Cargar(); // actualizo y muestro la grilla
+                DialogResult respuesta = MessageBox.Show("Seguro queres modificar la categoria a: " + txtCategoria.Text + "?", "Modificar Categoria", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); // mensaje modal de confirmacion para que el usuario confirme 
+
+                if (respuesta == DialogResult.Yes)
+                {
+
+                    datos.setearConsulta("update CATEGORIAS set Descripcion = @Descripcion where ID = @ID"); // le paso la query de update
+                    datos.setearParametro("@ID", txtIDCategoria.Text); // seteo el parametro ID con el valor del txtID
+                    datos.setearParametro("@Descripcion", txtCategoria.Text); // seteo el parametro Descripcion con el valor del txtCategoria
+                    datos.ejecutarAccion(); // ejecuto la accion de modificar el registro
+                    Cargar(); // actualizo y muestro la grilla
+                }
             }
             catch (Exception ex)
             {
@@ -119,7 +125,7 @@ namespace tp2
                 datos.cerrarConexion();
             }
 
-           
+
 
 
 

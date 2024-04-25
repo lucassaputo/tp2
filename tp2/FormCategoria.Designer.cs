@@ -161,6 +161,7 @@
             // 
             this.txtIDCategoria.Location = new System.Drawing.Point(38, 335);
             this.txtIDCategoria.Name = "txtIDCategoria";
+            this.txtIDCategoria.ReadOnly = true;
             this.txtIDCategoria.Size = new System.Drawing.Size(92, 20);
             this.txtIDCategoria.TabIndex = 9;
             // 
