@@ -153,5 +153,90 @@ namespace tp2
             dgvArticulos.DataSource = listaFiltrada;
             ocultarColumnas();
         }
+
+        private bool soloNumeros(string cadena)
+        {
+            foreach (char c in cadena)
+            {
+                if (!char.IsNumber(c))
+                {
+                    MessageBox.Show("El campo debe ser numérico");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool validarFiltro()
+        {
+            if(cboCampo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Seleccione un campo para filtrar");
+                return true;
+            }
+            if(cboCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Seleccione un criterio para filtrar");
+                return true;
+            }
+            if(cboCampo.SelectedItem.ToString() == "Precio" )
+            {
+                if(string.IsNullOrEmpty(txtFiltroAvanzado.Text))
+                {
+                    MessageBox.Show("Debes cargar el filtro para numérico");
+                    return true;
+                }
+                if (!(soloNumeros(txtFiltroAvanzado.Text)))
+                {
+                    MessageBox.Show("Ingrese sólo números para filtrar por precio");
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
+        private void btnBuscarAvanzado_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+
+            try
+            {
+                if (validarFiltro())
+                    return;
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cboCriterio.SelectedItem.ToString();
+                string filtro = txtFiltroAvanzado.Text;
+
+                dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string opcion = cboCampo.SelectedItem.ToString();
+
+            if(opcion == "Precio")
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Mayor a");
+                cboCriterio.Items.Add("Menor a");
+                cboCriterio.Items.Add("Igual a");
+            }
+            else
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Comienza con");
+                cboCriterio.Items.Add("Termina con");
+                cboCriterio.Items.Add("Contiene");
+            }
+        }
     }
 }
