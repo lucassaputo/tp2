@@ -130,7 +130,7 @@ namespace tp2
                 articulo.Codigo = txtCodigo.Text;
                 articulo.Nombre = txtNombre.Text;
                 articulo.Descripcion = txtDescripcion.Text;
-                articulo.UrlImagen = txtUrlImagen.Text;
+                //articulo.UrlImagen = txtUrlImagen.Text;
                 articulo.Precio = pasarADecimal(txtPrecio.Text);
                 articulo.Marca = (Marca)cboMarca.SelectedItem;
                 articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
