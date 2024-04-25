@@ -64,6 +64,7 @@
             this.dgvCategorias.RowTemplate.Height = 24;
             this.dgvCategorias.Size = new System.Drawing.Size(261, 291);
             this.dgvCategorias.TabIndex = 2;
+            this.dgvCategorias.SelectionChanged += new System.EventHandler(this.dgvCategorias_SelectionChanged);
             // 
             // lblAgregarMarca
             // 
@@ -116,6 +117,7 @@
             this.btnModificarCategoria.TabIndex = 7;
             this.btnModificarCategoria.Text = "Modificar Categoria";
             this.btnModificarCategoria.UseVisualStyleBackColor = false;
+            this.btnModificarCategoria.Click += new System.EventHandler(this.btnModificarCategoria_Click);
             // 
             // btnEliminarCategoria
             // 

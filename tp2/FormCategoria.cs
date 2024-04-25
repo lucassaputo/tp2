@@ -20,6 +20,12 @@ namespace tp2
             InitializeComponent();
         }
 
+        public FormCategoria(Categoria categoria)
+        {
+            InitializeComponent();
+            txtCategoria.Text = categoria.Descripcion; // seteo el valor del textbox con la descripcion de la categoria seleccionada
+        }
+
         private void FormCategoria_Load(object sender, EventArgs e)
         {
             Cargar();
@@ -89,7 +95,24 @@ namespace tp2
 
         }
 
-      
 
+        private void btnModificarCategoria_Click(object sender, EventArgs e)
+        {
+            Categoria seleccionada = (Categoria)dgvCategorias.CurrentRow.DataBoundItem; // selecciono la CATEGORIA de la DGV que quiero modificar
+
+           
+
+
+
+        }
+
+        private void dgvCategorias_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvCategorias.SelectedRows.Count > 0)
+            {
+                txtIDCategoria.Text = dgvCategorias.SelectedRows[0].Cells[0].Value.ToString(); //le asigno al TXTID el ID de la row seleccionada
+                txtCategoria.Text = dgvCategorias.SelectedRows[0].Cells[1].Value.ToString(); // le asigno al TXTCat la descripcion de la row qseleccionada
+            }
+        }
     }
 }
