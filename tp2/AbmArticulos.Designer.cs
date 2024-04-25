@@ -49,6 +49,9 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAtras = new System.Windows.Forms.Button();
             this.btnAdelante = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnAceptarImagen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,7 +82,7 @@
             // 
             // btnAgregarImagen
             // 
-            this.btnAgregarImagen.Location = new System.Drawing.Point(480, 256);
+            this.btnAgregarImagen.Location = new System.Drawing.Point(528, 315);
             this.btnAgregarImagen.Name = "btnAgregarImagen";
             this.btnAgregarImagen.Size = new System.Drawing.Size(27, 23);
             this.btnAgregarImagen.TabIndex = 39;
@@ -98,15 +101,15 @@
             // 
             // txtUrlImagen
             // 
-            this.txtUrlImagen.Location = new System.Drawing.Point(353, 259);
+            this.txtUrlImagen.Location = new System.Drawing.Point(286, 318);
             this.txtUrlImagen.Name = "txtUrlImagen";
-            this.txtUrlImagen.Size = new System.Drawing.Size(121, 20);
+            this.txtUrlImagen.Size = new System.Drawing.Size(236, 20);
             this.txtUrlImagen.TabIndex = 38;
             // 
             // lblUrlImagen
             // 
             this.lblUrlImagen.AutoSize = true;
-            this.lblUrlImagen.Location = new System.Drawing.Point(283, 262);
+            this.lblUrlImagen.Location = new System.Drawing.Point(283, 302);
             this.lblUrlImagen.Name = "lblUrlImagen";
             this.lblUrlImagen.Size = new System.Drawing.Size(61, 13);
             this.lblUrlImagen.TabIndex = 50;
@@ -240,11 +243,52 @@
             this.btnAdelante.Text = ">";
             this.btnAdelante.UseVisualStyleBackColor = true;
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.Color.Cyan;
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Location = new System.Drawing.Point(286, 259);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(114, 37);
+            this.btnEliminar.TabIndex = 58;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.BackColor = System.Drawing.Color.Cyan;
+            this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.Location = new System.Drawing.Point(419, 259);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(114, 37);
+            this.btnAgregar.TabIndex = 59;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // btnAceptarImagen
+            // 
+            this.btnAceptarImagen.BackColor = System.Drawing.Color.Cyan;
+            this.btnAceptarImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptarImagen.Location = new System.Drawing.Point(441, 355);
+            this.btnAceptarImagen.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAceptarImagen.Name = "btnAceptarImagen";
+            this.btnAceptarImagen.Size = new System.Drawing.Size(114, 37);
+            this.btnAceptarImagen.TabIndex = 60;
+            this.btnAceptarImagen.Text = "Aceptar";
+            this.btnAceptarImagen.UseVisualStyleBackColor = false;
+            this.btnAceptarImagen.Click += new System.EventHandler(this.btnAceptarImagen_Click);
+            // 
             // AbmArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(635, 308);
+            this.ClientSize = new System.Drawing.Size(873, 442);
+            this.Controls.Add(this.btnAceptarImagen);
+            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnAdelante);
             this.Controls.Add(this.btnAtras);
             this.Controls.Add(this.btnCancelar);
@@ -298,5 +342,8 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAtras;
         private System.Windows.Forms.Button btnAdelante;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnAceptarImagen;
     }
 }

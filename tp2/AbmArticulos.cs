@@ -33,6 +33,7 @@ namespace tp2
 
         private void form_Load(object sender, EventArgs e)
         {
+            
             MarcaNegocio marcaNegocio = new MarcaNegocio();
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
             try
@@ -46,6 +47,8 @@ namespace tp2
 
                 if (articulo != null)
                 {
+                    txtUrlImagen.Enabled = false;
+                    btnAgregarImagen.Enabled = false;
                     txtCodigo.Text = articulo.Codigo.ToString();
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
@@ -72,12 +75,11 @@ namespace tp2
         {
             if (imagenes.Count > 0)
             {
-                //MessageBox.Show("1111");
+                txtUrlImagen.Text = imagenes[0].UrlImagen;
                 cargarImagen(imagenes[0].UrlImagen);
             }
             else
             {
-                //MessageBox.Show("2222");
                 cargarImagen("xxxxx");
             }
         }
@@ -172,8 +174,8 @@ namespace tp2
                 }
                 else
                 {
-                    negocio.agregar(articulo);
-                    MessageBox.Show("Agregado exitosamente");
+                    string x= negocio.agregar2(articulo);
+                    MessageBox.Show("Agregado exitosamente" + x);
                 }
 
                 //Guardo imagen si la levantó localmente:
@@ -206,6 +208,21 @@ namespace tp2
                 txtUrlImagen.Text = archivo.FileName;
                 cargarImagen(archivo.FileName);
             }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            txtUrlImagen.Enabled = true;
+            txtUrlImagen.Text = "";
+            btnAgregarImagen.Enabled = true;
+        }
+
+        private void btnAceptarImagen_Click(object sender, EventArgs e)
+        {
+            txtUrlImagen.Enabled = false;
+            //txtUrlImagen.Text = "";
+            btnAgregarImagen.Enabled = false;
+            //articulo.Imagenes.Add
         }
     }
 }
