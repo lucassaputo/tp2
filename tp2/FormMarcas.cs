@@ -21,6 +21,7 @@ namespace tp2
 
         private void FormMarcas_Load(object sender, EventArgs e)
         {
+            txtIdMarca.Enabled = false;
             Cargar();
         }
 
@@ -64,11 +65,9 @@ namespace tp2
         private void btnAgregarMarca_Click(object sender, EventArgs ea)
         {
             AccesoDatos datos = new AccesoDatos();
-
             try
             {
                 datos.setearConsulta("insert into MARCAS (Descripcion) values (@Descripcion)");
-                datos.setearParametro("@idMarca", txtIdMarca.Text);
                 datos.setearParametro("@Descripcion", txtMarca.Text);
                 datos.ejecutarAccion();
                 Cargar();
@@ -81,6 +80,38 @@ namespace tp2
             {
                 datos.cerrarConexion();
             }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnEliminarMarca_Click(object sender, EventArgs e)
+        {
+            AccesoDatos datos = new AccesoDatos();
+ 
+            try
+            {
+                datos.setearConsulta("delete from MARCAS where ID = @ID");
+                datos.setearParametro("@ID", txtIdMarca.Text);
+                datos.ejecutarAccion();
+                Cargar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        private void dgvMarcas_SelectionChanged(object sender, EventArgs e)
+        {
+            txtIdMarca.Text = dgvMarcas.CurrentRow.Cells[0].Value.ToString();
+            txtMarca.Text = dgvMarcas.CurrentRow.Cells[1].Value.ToString();
         }
     }
 }

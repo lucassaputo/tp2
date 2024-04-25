@@ -101,5 +101,24 @@ namespace tp2
                 CargarImagen(seleccionado.Imagen.UrlImagen);
             }
         }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+            string filtro = txtBuscar.Text;
+
+            if(filtro != "")
+            {
+                listaFiltrada = listaArticulos.FindAll(k => k.Nombre.ToLower().Contains(filtro.ToLower()) || k.Descripcion.ToLower().Contains(filtro.ToLower()) || k.Precio.ToString().Contains(filtro) || k.Marca.Descripcion.ToLower().Contains(filtro.ToLower()) || k.Categoria.Descripcion.ToLower().Contains(filtro.ToLower()) );
+            }
+            else
+            {
+                listaFiltrada = listaArticulos;
+            }
+
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaFiltrada;
+            ocultarColumnas();
+        }
     }
 }
