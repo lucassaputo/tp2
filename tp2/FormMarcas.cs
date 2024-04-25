@@ -64,7 +64,9 @@ namespace tp2
 
         private void btnAgregarMarca_Click(object sender, EventArgs ea)
         {
+                       
             AccesoDatos datos = new AccesoDatos();
+            
             try
             {
                 datos.setearConsulta("insert into MARCAS (Descripcion) values (@Descripcion)");

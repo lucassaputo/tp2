@@ -56,6 +56,7 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
         public void agregar(Articulo nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -109,40 +110,47 @@ namespace Negocio
             }
         }
 
+
         public List<Articulo> filtrar(string campo, string criterio, string filtro)
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
+
+
             try
             {
-                string consulta = "Select Codigo, Nombre, A.Descripcion, ImagenUrl, Precio, M.Descripcion Marca, C.Descripcion Categoria, A.IdMarca, A.IdCategoria, A.Id From ARTICULOS A, MARCAS M, CATEGORIAS C Where M.Id = A.IdMarca And C.Id = A.IdCategoria And ";
-                if (campo == "Precio")
+                string consulta = "select A.ID, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.ID as IDMarca, M.Descripcion as Marca, C.ID as IDCategoria, C.Descripcion as Categoria, I.ImagenUrl from ARTICULOS as A inner join MARCAS as M on A.IDMarca = M.ID inner join CATEGORIAS as C on A.IDCategoria = C.ID inner join Imagenes i on a.IdCategoria = c.Id and a.IdMarca = m.Id and a.Id = i.IdArticulo and ";
+                
+                if(campo == "Precio")
+
                 {
                     switch (criterio)
                     {
                         case "Mayor a":
-                            consulta += "Precio > " + filtro;
+                            consulta += "A.Precio > " + filtro;
                             break;
                         case "Menor a":
-                            consulta += "Precio < " + filtro;
+                            consulta += "A.Precio < " + filtro;
                             break;
                         default:
-                            consulta += "Precio = " + filtro;
+                            consulta += "A.Precio = " + filtro;
                             break;
                     }
-                }
-                else if (campo == "Nombre")
+                }else if(campo == "Nombre")
+
                 {
                     switch (criterio)
                     {
                         case "Comienza con":
-                            consulta += "Nombre like '" + filtro + "%' ";
+
+                            consulta += "A.Nombre like '" + filtro + "%'";
                             break;
                         case "Termina con":
-                            consulta += "Nombre like '%" + filtro + "'";
+                            consulta += "A.Nombre like '%" + filtro + "'";
                             break;
                         default:
-                            consulta += "Nombre like '%" + filtro + "%'";
+                            consulta += "A.Nombre like '%" + filtro + "%'";
+
                             break;
                     }
                 }
@@ -151,7 +159,9 @@ namespace Negocio
                     switch (criterio)
                     {
                         case "Comienza con":
-                            consulta += "A.Descripcion like '" + filtro + "%' ";
+
+                            consulta += "A.Descripcion like '" + filtro + "%'";
+
                             break;
                         case "Termina con":
                             consulta += "A.Descripcion like '%" + filtro + "'";
@@ -164,15 +174,18 @@ namespace Negocio
 
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
+
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
-                    aux.ID = (int)datos.Lector["Id"];
+                    aux.ID = (int)datos.Lector["ID"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    if (!(datos.Lector["ImagenUrl"] is DBNull))
-                       // aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+                    aux.Imagen = new Imagen();
+                    aux.Imagen.ID = (int)datos.Lector["ID"];
+                    aux.Imagen.UrlImagen = (string)datos.Lector["ImagenUrl"];
+
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     aux.Marca = new Marca();
                     aux.Marca.ID = (int)datos.Lector["IdMarca"];
@@ -190,6 +203,11 @@ namespace Negocio
             {
                 throw ex;
             }
+
+            finally
+            {
+                datos.cerrarConexion();
+
         }
 
         public void eliminar(int id)
@@ -205,6 +223,7 @@ namespace Negocio
             catch (Exception ex)
             {
                 throw ex;
+
             }
         }
     }
