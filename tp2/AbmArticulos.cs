@@ -150,7 +150,8 @@ namespace tp2
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
+            ArticuloNegocio negocioArticulo = new ArticuloNegocio();
+            int id;
             try
             {
                 if (validarArticulo())
@@ -168,14 +169,15 @@ namespace tp2
 
                 if (articulo.ID != 0)
                 {
-                    negocio.modificar(articulo);
+                    negocioArticulo.modificar(articulo);
                     
                     MessageBox.Show("Modificado exitosamente");
                 }
                 else
                 {
-                    string x= negocio.agregar2(articulo);
-                    MessageBox.Show("Agregado exitosamente" + x);
+                    negocioArticulo.agregar2(articulo);
+                    id = negocioArticulo.buscarUltimo();
+                    MessageBox.Show("Agregado exitosamente" + id);
                 }
 
                 //Guardo imagen si la levantó localmente:

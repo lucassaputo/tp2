@@ -48,6 +48,7 @@ namespace tp2
             try
             {
                 listaArticulos = negocio.listarConImagenes();
+
                 dgvArticulos.DataSource = listaArticulos;
                 ocultarColumnas();
                 if (listaArticulos.Count > 0)

@@ -128,7 +128,7 @@ namespace Negocio
             }
         }
 
-        public string agregar2(Articulo nuevo)
+        public void agregar2(Articulo nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -143,8 +143,8 @@ namespace Negocio
                 // datos.setearParametro("@UrlImagen", nuevo.UrlImagen);
                 datos.setearParametro("@Precio", nuevo.Precio);
                 datos.ejecutarAccion();
-                string x = (string)datos.Lector["ID"];
-                return x;
+                //string x = (string)datos.Lector["ID"];
+                //return x;
 
             }
             catch (Exception ex)
@@ -156,7 +156,31 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-
+        public int buscarUltimo()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int id=-1;
+            try
+            {
+                datos.setearConsulta("SELECT TOP 1 * FROM ARTICULOS ORDER BY Id DESC");
+                datos.ejecutarAccion();
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    id = (int)datos.Lector["ID"];
+                }
+                return id;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+       
         public void modificar(Articulo aux)
         {
             AccesoDatos datos = new AccesoDatos();
