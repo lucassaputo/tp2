@@ -27,8 +27,8 @@ namespace Negocio
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    if (!(datos.Lector["ImagenUrl"] is DBNull))
-                        aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
+                 //   if (!(datos.Lector["ImagenUrl"] is DBNull))
+                   //     aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
 
                     /*aux.UrlImagen = new Imagen();
                     aux.UrlImagen.ID = (int)datos.Lector["ID"];
@@ -69,7 +69,7 @@ namespace Negocio
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@IdMarca", nuevo.Marca.ID);
                 datos.setearParametro("@IdCategoria", nuevo.Categoria.ID);
-                datos.setearParametro("@UrlImagen", nuevo.UrlImagen);
+              //  datos.setearParametro("@UrlImagen", nuevo.UrlImagen);
                 datos.setearParametro("@Precio", nuevo.Precio);
                 datos.ejecutarAccion();
             }
@@ -92,7 +92,7 @@ namespace Negocio
                 datos.setearParametro("@Codigo", aux.Codigo);
                 datos.setearParametro("@nombre", aux.Nombre);
                 datos.setearParametro("@descripcion", aux.Descripcion);
-                datos.setearParametro("@UrlImagen", aux.UrlImagen);
+               // datos.setearParametro("@UrlImagen", aux.UrlImagen);
                 datos.setearParametro("@Precio", aux.Precio);
                 datos.setearParametro("@IdMarca", aux.Marca.ID);
                 datos.setearParametro("@IdCategoria", aux.Categoria.ID);
@@ -120,8 +120,8 @@ namespace Negocio
             try
             {
                 string consulta = "select A.ID, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.ID as IDMarca, M.Descripcion as Marca, C.ID as IDCategoria, C.Descripcion as Categoria, I.ImagenUrl from ARTICULOS as A inner join MARCAS as M on A.IDMarca = M.ID inner join CATEGORIAS as C on A.IDCategoria = C.ID inner join Imagenes i on a.IdCategoria = c.Id and a.IdMarca = m.Id and a.Id = i.IdArticulo and ";
-                
-                if(campo == "Precio")
+
+                if (campo == "Precio")
 
                 {
                     switch (criterio)
@@ -136,7 +136,8 @@ namespace Negocio
                             consulta += "A.Precio = " + filtro;
                             break;
                     }
-                }else if(campo == "Nombre")
+                }
+                else if (campo == "Nombre")
 
                 {
                     switch (criterio)
@@ -182,9 +183,9 @@ namespace Negocio
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.Imagen = new Imagen();
+                   /* aux.Imagen = new Imagen();
                     aux.Imagen.ID = (int)datos.Lector["ID"];
-                    aux.Imagen.UrlImagen = (string)datos.Lector["ImagenUrl"];
+                    aux.Imagen.UrlImagen = (string)datos.Lector["ImagenUrl"];*/
 
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     aux.Marca = new Marca();
@@ -208,8 +209,8 @@ namespace Negocio
             {
                 datos.cerrarConexion();
 
+            }
         }
-
         public void eliminar(int id)
         {
             try

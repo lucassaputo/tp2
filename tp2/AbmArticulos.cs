@@ -47,8 +47,8 @@ namespace tp2
                     txtCodigo.Text = articulo.Codigo.ToString();
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
-                    txtUrlImagen.Text = articulo.UrlImagen;
-                    cargarImagen(articulo.UrlImagen);
+                  //  txtUrlImagen.Text = articulo.UrlImagen;
+                    //cargarImagen(articulo.UrlImagen);
                     txtPrecio.Text = articulo.Precio.ToString("#0.00", System.Globalization.CultureInfo.InvariantCulture);
                     cboMarca.SelectedValue = articulo.Marca.ID;
                     cboCategoria.SelectedValue = articulo.Categoria.ID;

@@ -208,12 +208,6 @@
             this.txtFiltroAvanzado.Size = new System.Drawing.Size(209, 22);
             this.txtFiltroAvanzado.TabIndex = 13;
 
-            this.textBox1.Location = new System.Drawing.Point(374, 383);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(158, 20);
-            this.textBox1.TabIndex = 13;
-
             // 
             // btnBuscarAvanzado
             // 
