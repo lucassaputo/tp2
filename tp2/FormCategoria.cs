@@ -98,7 +98,26 @@ namespace tp2
 
         private void btnModificarCategoria_Click(object sender, EventArgs e)
         {
-            Categoria seleccionada = (Categoria)dgvCategorias.CurrentRow.DataBoundItem; // selecciono la CATEGORIA de la DGV que quiero modificar
+            //Categoria seleccionada = (Categoria)dgvCategorias.CurrentRow.DataBoundItem; // selecciono la CATEGORIA de la DGV que quiero modificar
+
+            AccesoDatos datos = new AccesoDatos(); 
+
+            try
+            {
+                datos.setearConsulta("update CATEGORIAS set Descripcion = @Descripcion where ID = @ID"); // le paso la query de update
+                datos.setearParametro("@ID", txtIDCategoria.Text); // seteo el parametro ID con el valor del txtID
+                datos.setearParametro("@Descripcion", txtCategoria.Text); // seteo el parametro Descripcion con el valor del txtCategoria
+                datos.ejecutarAccion(); // ejecuto la accion de modificar el registro
+                Cargar(); // actualizo y muestro la grilla
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
 
            
 
@@ -111,7 +130,7 @@ namespace tp2
             if (dgvCategorias.SelectedRows.Count > 0)
             {
                 txtIDCategoria.Text = dgvCategorias.SelectedRows[0].Cells[0].Value.ToString(); //le asigno al TXTID el ID de la row seleccionada
-                txtCategoria.Text = dgvCategorias.SelectedRows[0].Cells[1].Value.ToString(); // le asigno al TXTCat la descripcion de la row qseleccionada
+                txtCategoria.Text = dgvCategorias.SelectedRows[0].Cells[1].Value.ToString(); // le asigno al TXTCat la descripcion de la row qseleccionada, es Cells 1 porque es la segunda columna.
             }
         }
     }
