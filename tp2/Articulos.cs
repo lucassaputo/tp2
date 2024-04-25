@@ -207,7 +207,7 @@ namespace tp2
                     return;
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio = cboCriterio.SelectedItem.ToString();
-                string filtro = txtFiltroAvanzado.Text;
+                string filtro = txtFiltroAv.Text;
 
                 dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
 

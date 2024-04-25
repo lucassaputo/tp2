@@ -17,7 +17,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("select A.ID, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.ID as IDMarca, M.Descripcion as Marca, C.ID as IDCategoria, C.Descripcion as Categoria, I.ImagenUrl from ARTICULOS as A inner join MARCAS as M on A.IDMarca = M.ID inner join CATEGORIAS as C on A.IDCategoria = C.ID inner join Imagenes i on a.IdCategoria = c.Id and a.IdMarca = m.Id and a.Id = i.IdArticulo");
+                datos.setearConsulta("select A.ID, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.ID as IDMarca, M.Descripcion as Marca, C.ID as IDCategoria, C.Descripcion as Categoria from ARTICULOS as A inner join MARCAS as M on A.IDMarca = M.ID inner join CATEGORIAS as C on A.IDCategoria = C.ID");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -65,7 +65,7 @@ namespace Negocio
             ImagenNegocio negocioImagen = new ImagenNegocio();
             try
             {
-                datos.setearConsulta("select A.ID, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.ID as IDMarca, M.Descripcion as Marca, C.ID as IDCategoria, C.Descripcion as Categoria, I.ImagenUrl from ARTICULOS as A inner join MARCAS as M on A.IDMarca = M.ID inner join CATEGORIAS as C on A.IDCategoria = C.ID inner join Imagenes i on a.IdCategoria = c.Id and a.IdMarca = m.Id and a.Id = i.IdArticulo");
+                datos.setearConsulta("select A.ID, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.ID as IDMarca, M.Descripcion as Marca, C.ID as IDCategoria, C.Descripcion as Categoria from ARTICULOS as A inner join MARCAS as M on A.IDMarca = M.ID inner join CATEGORIAS as C on A.IDCategoria = C.ID");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -165,7 +165,7 @@ namespace Negocio
             try
             {
                 datos.setearConsulta("SELECT TOP 1 * FROM ARTICULOS ORDER BY Id DESC");
-                datos.ejecutarAccion();
+                datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
@@ -283,9 +283,12 @@ namespace Negocio
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                   /* aux.Imagen = new Imagen();
-                    aux.Imagen.ID = (int)datos.Lector["ID"];
-                    aux.Imagen.UrlImagen = (string)datos.Lector["ImagenUrl"];*/
+
+                    aux.Imagenes = new List<Imagen>();
+                    Imagen nuevaImagen = new Imagen();
+                    nuevaImagen.ID = (int)datos.Lector["ID"];
+                    nuevaImagen.UrlImagen = (string)datos.Lector["ImagenUrl"];
+                    aux.Imagenes.Add(nuevaImagen);
 
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     aux.Marca = new Marca();
