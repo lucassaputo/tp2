@@ -24,7 +24,15 @@ namespace tp2
             lblCodigoArticulo.Text = seleccionado.Codigo;
             lblMarca.Text = seleccionado.Marca.Descripcion;
             lblCategoriaArticulo.Text = seleccionado.Categoria.Descripcion;
-            CargarImagen(seleccionado.UrlImagen);
+            //CargarImagen(seleccionado.UrlImagen);
+            if (seleccionado.Imagenes.Count > 0)
+            {
+                CargarImagen(seleccionado.Imagenes[0].UrlImagen);
+            }
+            else
+            {
+                CargarImagen("XXX");
+            }
         }
 
         private void frmVentana3_Load(object sender, EventArgs e)

@@ -27,8 +27,7 @@ namespace Negocio
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                 //   if (!(datos.Lector["ImagenUrl"] is DBNull))
-                   //     aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
+
 
                     /*aux.UrlImagen = new Imagen();
                     aux.UrlImagen.ID = (int)datos.Lector["ID"];
@@ -57,21 +56,39 @@ namespace Negocio
             }
         }
 
-        public void agregar(Articulo nuevo)
+
+        public List<Articulo> listarConImagenes()
         {
             AccesoDatos datos = new AccesoDatos();
-
+            List<Articulo> lista = new List<Articulo>();
+            List<Imagen> imagenes = new List<Imagen>();
+            ImagenNegocio negocioImagen = new ImagenNegocio();
             try
             {
-                datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio)values( @Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @UrlImagen, @Precio)");
-                datos.setearParametro("@Codigo", nuevo.Codigo);
-                datos.setearParametro("@Nombre", nuevo.Nombre);
-                datos.setearParametro("@Descripcion", nuevo.Descripcion);
-                datos.setearParametro("@IdMarca", nuevo.Marca.ID);
-                datos.setearParametro("@IdCategoria", nuevo.Categoria.ID);
-              //  datos.setearParametro("@UrlImagen", nuevo.UrlImagen);
-                datos.setearParametro("@Precio", nuevo.Precio);
-                datos.ejecutarAccion();
+                datos.setearConsulta("select A.ID, A.Codigo, A.Nombre, A.Descripcion, A.Precio, M.ID as IDMarca, M.Descripcion as Marca, C.ID as IDCategoria, C.Descripcion as Categoria, I.ImagenUrl from ARTICULOS as A inner join MARCAS as M on A.IDMarca = M.ID inner join CATEGORIAS as C on A.IDCategoria = C.ID inner join Imagenes i on a.IdCategoria = c.Id and a.IdMarca = m.Id and a.Id = i.IdArticulo");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.ID = (int)datos.Lector["ID"];
+                    aux.Codigo = (string)datos.Lector["Codigo"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];                 
+                    aux.Precio = (decimal)datos.Lector["Precio"];
+                    aux.Marca = new Marca();
+                    aux.Marca.ID = (int)datos.Lector["IDMarca"];
+                    aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+                    aux.Categoria = new Categoria();
+                    aux.Categoria.ID = (int)datos.Lector["IDCategoria"];
+                    aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];                 
+
+                    aux.Imagenes = negocioImagen.listar(aux.ID);
+
+                    lista.Add(aux);
+                }
+
+                return lista;
             }
             catch (Exception ex)
             {
@@ -83,6 +100,89 @@ namespace Negocio
             }
         }
 
+        public void agregar(Articulo nuevo)
+
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio)values( @Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @UrlImagen, @Precio)");
+                datos.setearParametro("@Codigo", nuevo.Codigo);
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+                datos.setearParametro("@Descripcion", nuevo.Descripcion);
+                datos.setearParametro("@IdMarca", nuevo.Marca.ID);
+                datos.setearParametro("@IdCategoria", nuevo.Categoria.ID);
+
+                datos.setearParametro("@Precio", nuevo.Precio);
+                datos.ejecutarAccion();
+                string x= (string)datos.Lector["ID"];
+                return x;
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void agregar2(Articulo nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio)values( @Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @Precio)");
+                datos.setearParametro("@Codigo", nuevo.Codigo);
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+                datos.setearParametro("@Descripcion", nuevo.Descripcion);
+                datos.setearParametro("@IdMarca", nuevo.Marca.ID);
+                datos.setearParametro("@IdCategoria", nuevo.Categoria.ID);
+                // datos.setearParametro("@UrlImagen", nuevo.UrlImagen);
+                datos.setearParametro("@Precio", nuevo.Precio);
+                datos.ejecutarAccion();
+                //string x = (string)datos.Lector["ID"];
+                //return x;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public int buscarUltimo()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int id=-1;
+            try
+            {
+                datos.setearConsulta("SELECT TOP 1 * FROM ARTICULOS ORDER BY Id DESC");
+                datos.ejecutarAccion();
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    id = (int)datos.Lector["ID"];
+                }
+                return id;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+       
         public void modificar(Articulo aux)
         {
             AccesoDatos datos = new AccesoDatos();

@@ -12,11 +12,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Configuration;
+using static System.Net.Mime.MediaTypeNames;
 namespace tp2
 {
     public partial class AbmArticulos : Form
     {
         private Articulo articulo = null;
+        private List<Imagen> imagenes;
         private OpenFileDialog archivo = null;
         public AbmArticulos()
         {
@@ -31,6 +33,7 @@ namespace tp2
 
         private void form_Load(object sender, EventArgs e)
         {
+            
             MarcaNegocio marcaNegocio = new MarcaNegocio();
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
             try
@@ -44,11 +47,20 @@ namespace tp2
 
                 if (articulo != null)
                 {
+                    txtUrlImagen.Enabled = false;
+                    btnAgregarImagen.Enabled = false;
                     txtCodigo.Text = articulo.Codigo.ToString();
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
+
+                   // txtUrlImagen.Text = articulo.UrlImagen;
+                    //cargarImagen(articulo.UrlImagen);
+                    cargarImagenes(articulo.Imagenes);
+                    //cargarImagenes(10);
+
                   //  txtUrlImagen.Text = articulo.UrlImagen;
                     //cargarImagen(articulo.UrlImagen);
+
                     txtPrecio.Text = articulo.Precio.ToString("#0.00", System.Globalization.CultureInfo.InvariantCulture);
                     cboMarca.SelectedValue = articulo.Marca.ID;
                     cboCategoria.SelectedValue = articulo.Categoria.ID;
@@ -63,6 +75,30 @@ namespace tp2
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+        private void cargarImagenes(List<Imagen> imagenes)
+        {
+            if (imagenes.Count > 0)
+            {
+                txtUrlImagen.Text = imagenes[0].UrlImagen;
+                cargarImagen(imagenes[0].UrlImagen);
+            }
+            else
+            {
+                cargarImagen("xxxxx");
+            }
+        }
+        private void cargarImagen(string imag)
+        {
+            try
+            {
+                pbxArticulo.Load(imag);
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.ToString());
+                pbxArticulo.Load("https://img.freepik.com/vector-premium/no-hay-foto-disponible-icono-vector-simbolo-imagen-predeterminado-imagen-proximamente-sitio-web-o-aplicacion-movil_87543-10615.jpg?w=826");
+            }
         }
 
         private bool validarArticulo()
@@ -119,7 +155,8 @@ namespace tp2
         }
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
+            ArticuloNegocio negocioArticulo = new ArticuloNegocio();
+            int id;
             try
             {
                 if (validarArticulo())
@@ -137,14 +174,15 @@ namespace tp2
 
                 if (articulo.ID != 0)
                 {
-                    negocio.modificar(articulo);
+                    negocioArticulo.modificar(articulo);
                     
                     MessageBox.Show("Modificado exitosamente");
                 }
                 else
                 {
-                    negocio.agregar(articulo);
-                    MessageBox.Show("Agregado exitosamente");
+                    negocioArticulo.agregar2(articulo);
+                    id = negocioArticulo.buscarUltimo();
+                    MessageBox.Show("Agregado exitosamente" + id);
                 }
 
                 //Guardo imagen si la levantó localmente:
@@ -166,17 +204,7 @@ namespace tp2
             cargarImagen(txtUrlImagen.Text);
         }
 
-        private void cargarImagen(string imagen)
-        {
-            try
-            {
-                pbxArticulo.Load(imagen);
-            }
-            catch (Exception ex)
-            {
-                pbxArticulo.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
-            }
-        }
+
 
         private void btnAgregarImagen_Click(object sender, EventArgs e)
         {
@@ -187,6 +215,21 @@ namespace tp2
                 txtUrlImagen.Text = archivo.FileName;
                 cargarImagen(archivo.FileName);
             }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            txtUrlImagen.Enabled = true;
+            txtUrlImagen.Text = "";
+            btnAgregarImagen.Enabled = true;
+        }
+
+        private void btnAceptarImagen_Click(object sender, EventArgs e)
+        {
+            txtUrlImagen.Enabled = false;
+            //txtUrlImagen.Text = "";
+            btnAgregarImagen.Enabled = false;
+            //articulo.Imagenes.Add
         }
     }
 }
