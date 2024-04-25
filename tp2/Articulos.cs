@@ -47,11 +47,17 @@ namespace tp2
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
-                listaArticulos = negocio.listar();
+                listaArticulos = negocio.listarConImagenes();
                 dgvArticulos.DataSource = listaArticulos;
                 ocultarColumnas();
-
-                CargarImagen(listaArticulos[0].UrlImagen);
+                if (listaArticulos.Count > 0)
+                {
+                    CargarImagen(listaArticulos[0].Imagenes[0].UrlImagen);
+                }
+                else
+                {
+                    CargarImagen("XXX");
+                }
             }
             catch (Exception ex)
             {
@@ -61,7 +67,7 @@ namespace tp2
 
         private void ocultarColumnas()
         {
-            dgvArticulos.Columns["UrlImagen"].Visible = false;
+           // dgvArticulos.Columns["UrlImagen"].Visible = false;
             dgvArticulos.Columns["Id"].Visible = false;
         }
 
@@ -74,6 +80,7 @@ namespace tp2
             catch (Exception ex)
             {
                 pibArticulos.Load("https://img.freepik.com/vector-premium/no-hay-foto-disponible-icono-vector-simbolo-imagen-predeterminado-imagen-proximamente-sitio-web-o-aplicacion-movil_87543-10615.jpg?w=826");
+                //pibArticulos.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
             }
         }
 
@@ -98,7 +105,15 @@ namespace tp2
             if(dgvArticulos.CurrentRow != null)
             {
                 Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-                CargarImagen(seleccionado.UrlImagen);
+                //CargarImagen(seleccionado.UrlImagen);
+                if (seleccionado.Imagenes.Count > 0)
+                {
+                    CargarImagen(seleccionado.Imagenes[0].UrlImagen);
+                }
+                else
+                {
+                    CargarImagen("XXX");
+                }
             }
         }
 

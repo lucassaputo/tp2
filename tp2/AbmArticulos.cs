@@ -49,9 +49,10 @@ namespace tp2
                     txtCodigo.Text = articulo.Codigo.ToString();
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
-                    txtUrlImagen.Text = articulo.UrlImagen;
-                    cargarImagen(articulo.UrlImagen);
-                    //cargarImagenes(articulo.ID);
+                   // txtUrlImagen.Text = articulo.UrlImagen;
+                    //cargarImagen(articulo.UrlImagen);
+                    cargarImagenes(articulo.Imagenes);
+                    //cargarImagenes(10);
                     txtPrecio.Text = articulo.Precio.ToString("#0.00", System.Globalization.CultureInfo.InvariantCulture);
                     cboMarca.SelectedValue = articulo.Marca.ID;
                     cboCategoria.SelectedValue = articulo.Categoria.ID;
@@ -67,16 +68,18 @@ namespace tp2
         {
             Close();
         }
-        private void cargarImagenes(int id)
+        private void cargarImagenes(List<Imagen> imagenes)
         {
-            ImagenNegocio negocioImagen = new ImagenNegocio();
-       
-                //imagenes = negocioImagen.listar(id);
-                //MessageBox.Show(imagenes[0].UrlImagen);
-                //cargarImagen(imagenes[0].UrlImagen);
-                //cargarImagen("xxxxx");
-
-
+            if (imagenes.Count > 0)
+            {
+                //MessageBox.Show("1111");
+                cargarImagen(imagenes[0].UrlImagen);
+            }
+            else
+            {
+                //MessageBox.Show("2222");
+                cargarImagen("xxxxx");
+            }
         }
         private void cargarImagen(string imag)
         {
@@ -87,7 +90,7 @@ namespace tp2
             catch (Exception ex)
             {
                 //MessageBox.Show(ex.ToString());
-                pbxArticulo.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+                pbxArticulo.Load("https://img.freepik.com/vector-premium/no-hay-foto-disponible-icono-vector-simbolo-imagen-predeterminado-imagen-proximamente-sitio-web-o-aplicacion-movil_87543-10615.jpg?w=826");
             }
         }
 
