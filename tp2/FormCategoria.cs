@@ -44,5 +44,26 @@ namespace tp2
         {
             Close();
         }
+
+        private void btnAgregarCategoria_Click(object sender, EventArgs e)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("insert into CATEGORIAS (Descripcion) values (@Descripcion)"); 
+                datos.setearParametro("@Descripcion", txtCategoria.Text); 
+                datos.ejecutarAccion();
+                Cargar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

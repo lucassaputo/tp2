@@ -103,6 +103,7 @@
             this.btnAgregarCategoria.TabIndex = 6;
             this.btnAgregarCategoria.Text = "Añadir Categoria";
             this.btnAgregarCategoria.UseVisualStyleBackColor = false;
+            this.btnAgregarCategoria.Click += new System.EventHandler(this.btnAgregarCategoria_Click);
             // 
             // btnModificarCategoria
             // 
