@@ -116,8 +116,8 @@ namespace Negocio
 
                 datos.setearParametro("@Precio", nuevo.Precio);
                 datos.ejecutarAccion();
-                string x= (string)datos.Lector["ID"];
-                return x;
+                //string x= (string)datos.Lector["ID"];
+                //return x;
                 
             }
             catch (Exception ex)
