@@ -243,5 +243,59 @@ namespace tp2
                 cboCriterio.Items.Add("Contiene");
             }
         }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado = new Articulo();
+            List<Imagen> imagenes = new List<Imagen>();
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            imagenes = seleccionado.Imagenes;
+            int i = 0;
+            foreach (Imagen img in imagenes)
+            {
+                if (img.UrlImagen == pibArticulos.ImageLocation)
+                {
+                    if (i == imagenes.Count - 1)
+                    {
+                        CargarImagen(imagenes[0].UrlImagen);
+                        break;
+                    }
+                    else
+                    {
+                        CargarImagen(imagenes[i + 1].UrlImagen);
+                        break;
+                    }
+                }
+                i++;
+            }
+
+
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado = new Articulo();
+            List<Imagen> imagenes = new List<Imagen>();
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            imagenes = seleccionado.Imagenes;
+            int i = 0;
+            foreach (Imagen img in imagenes)
+            {
+                if (img.UrlImagen == pibArticulos.ImageLocation)
+                {
+                    if (i == 0)
+                    {
+                        CargarImagen(imagenes[imagenes.Count - 1].UrlImagen);
+                        break;
+                    }
+                    else
+                    {
+                        CargarImagen(imagenes[i - 1].UrlImagen);
+                        break;
+                    }
+                }
+                i++;
+            }
+        }
     }
 }
