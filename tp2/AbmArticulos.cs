@@ -200,22 +200,23 @@ namespace tp2
                     {
                         for(int i = 0; i < articulo.Imagenes.Count; i++)
                         {
-                            if (articulo.Imagenes[i].ID > -1)
-                            {
-                                imagenNegocio.modificar(articulo.Imagenes[i]);
-                            }
-                            else
-                            {
-                                imagenNegocio.agregar(articulo.Imagenes[i]);
-                            }
+                            /* if (articulo.Imagenes[i].ID > -1)
+                             {
+                                 imagenNegocio.modificar(articulo.Imagenes[i]);
+                             }
+                             else
+                             {*/
+                            articulo.Imagenes[i].IdArticulo=id;
+                            imagenNegocio.agregar(articulo.Imagenes[i]);
+                            //}
                         }
                     }
                     MessageBox.Show("Agregado exitosamente" + id);
                 }
 
                 //Guardo imagen si la levantó localmente:
-                if (archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP")))
-                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+                /*if (archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP")))
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);*/
 
                 Close();
 
