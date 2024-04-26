@@ -46,7 +46,7 @@ namespace Negocio
             try
             {
                 datos.setearConsulta("Insert into IMAGENES (IdArticulo, ImagenUrl)values( @idArticulo, @urlImagen)");
-                datos.setearParametro("@idArticulo", nuevo.ID);
+                datos.setearParametro("@idArticulo", nuevo.IdArticulo);
                 datos.setearParametro("@urlImagen", nuevo.UrlImagen);                
                 datos.ejecutarAccion();
             }
@@ -65,7 +65,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update IMAGENES set UrlImagen = @urlImagen Where Id = @id");
+                datos.setearConsulta("update IMAGENES set ImagenUrl = @urlImagen Where Id = @id");
                 datos.setearParametro("@id", aux.ID);
                 datos.setearParametro("@urlImagen", aux.UrlImagen);
                 

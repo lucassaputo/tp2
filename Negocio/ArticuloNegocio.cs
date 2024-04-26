@@ -190,7 +190,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update ARTICULOS set Codigo = @Codigo, Nombre = @nombre, Descripcion = @descripcion, ImagenUrl = @UrlImagen, Precio=@Precio, IdMarca = @IdMarca, IdCategoria = @IdCategoria Where Id = @id");
+                datos.setearConsulta("update ARTICULOS set Codigo = @Codigo, Nombre = @nombre, Descripcion = @descripcion, Precio=@Precio, IdMarca = @IdMarca, IdCategoria = @IdCategoria Where Id = @id");
                 datos.setearParametro("@Codigo", aux.Codigo);
                 datos.setearParametro("@nombre", aux.Nombre);
                 datos.setearParametro("@descripcion", aux.Descripcion);
