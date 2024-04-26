@@ -42,7 +42,6 @@
             this.lblBuscarAvanzado = new System.Windows.Forms.Label();
             this.cboCampo = new System.Windows.Forms.ComboBox();
             this.cboCriterio = new System.Windows.Forms.ComboBox();
-            //this.txtFiltroAvanzado = new System.Windows.Forms.TextBox();
             this.btnBuscarAvanzado = new System.Windows.Forms.Button();
             this.btnMenuAgregarArt = new System.Windows.Forms.ToolStripButton();
             this.btnMenuModificarArt = new System.Windows.Forms.ToolStripButton();
@@ -52,6 +51,8 @@
             this.btnMarcas = new System.Windows.Forms.Button();
             this.btnCategorias = new System.Windows.Forms.Button();
             this.txtFiltroAv = new System.Windows.Forms.TextBox();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.btnSiguiente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pibArticulos)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -196,14 +197,6 @@
             this.cboCriterio.Size = new System.Drawing.Size(152, 24);
             this.cboCriterio.TabIndex = 12;
             // 
-            // txtFiltroAvanzado
-            // 
-            //this.txtFiltroAvanzado.Location = new System.Drawing.Point(665, 580);
-            //this.txtFiltroAvanzado.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            //this.txtFiltroAvanzado.Name = "txtFiltroAvanzado";
-            //this.txtFiltroAvanzado.Size = new System.Drawing.Size(277, 22);
-            //this.txtFiltroAvanzado.TabIndex = 13;
-            // 
             // btnBuscarAvanzado
             // 
             this.btnBuscarAvanzado.Location = new System.Drawing.Point(724, 466);
@@ -221,7 +214,7 @@
             this.btnMenuAgregarArt.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuAgregarArt.Image")));
             this.btnMenuAgregarArt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnMenuAgregarArt.Name = "btnMenuAgregarArt";
-            this.btnMenuAgregarArt.Size = new System.Drawing.Size(29, 28);
+            this.btnMenuAgregarArt.Size = new System.Drawing.Size(29, 24);
             this.btnMenuAgregarArt.Text = "toolStripButton1";
             // 
             // btnMenuModificarArt
@@ -230,7 +223,7 @@
             this.btnMenuModificarArt.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuModificarArt.Image")));
             this.btnMenuModificarArt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnMenuModificarArt.Name = "btnMenuModificarArt";
-            this.btnMenuModificarArt.Size = new System.Drawing.Size(29, 28);
+            this.btnMenuModificarArt.Size = new System.Drawing.Size(29, 24);
             this.btnMenuModificarArt.Text = "toolStripButton2";
             // 
             // btnMenuEliminarArt
@@ -239,7 +232,7 @@
             this.btnMenuEliminarArt.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuEliminarArt.Image")));
             this.btnMenuEliminarArt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnMenuEliminarArt.Name = "btnMenuEliminarArt";
-            this.btnMenuEliminarArt.Size = new System.Drawing.Size(29, 28);
+            this.btnMenuEliminarArt.Size = new System.Drawing.Size(29, 24);
             this.btnMenuEliminarArt.Text = "toolStripButton3";
             // 
             // btnMenuBuscarArt
@@ -248,7 +241,7 @@
             this.btnMenuBuscarArt.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuBuscarArt.Image")));
             this.btnMenuBuscarArt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnMenuBuscarArt.Name = "btnMenuBuscarArt";
-            this.btnMenuBuscarArt.Size = new System.Drawing.Size(29, 28);
+            this.btnMenuBuscarArt.Size = new System.Drawing.Size(29, 24);
             this.btnMenuBuscarArt.Text = "toolStripButton4";
             // 
             // toolStrip1
@@ -261,7 +254,7 @@
             this.btnMenuBuscarArt});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1251, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1251, 27);
             this.toolStrip1.TabIndex = 15;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -298,17 +291,38 @@
             this.txtFiltroAv.Size = new System.Drawing.Size(227, 22);
             this.txtFiltroAv.TabIndex = 18;
             // 
+            // btnPrev
+            // 
+            this.btnPrev.Location = new System.Drawing.Point(814, 394);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(75, 23);
+            this.btnPrev.TabIndex = 19;
+            this.btnPrev.Text = "<";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // btnSiguiente
+            // 
+            this.btnSiguiente.Location = new System.Drawing.Point(993, 394);
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(75, 23);
+            this.btnSiguiente.TabIndex = 20;
+            this.btnSiguiente.Text = ">";
+            this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
+            // 
             // Articulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1251, 560);
+            this.Controls.Add(this.btnSiguiente);
+            this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.txtFiltroAv);
             this.Controls.Add(this.btnCategorias);
             this.Controls.Add(this.btnMarcas);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.btnBuscarAvanzado);
-            //this.Controls.Add(this.txtFiltroAvanzado);
             this.Controls.Add(this.cboCriterio);
             this.Controls.Add(this.cboCampo);
             this.Controls.Add(this.lblBuscarAvanzado);
@@ -363,6 +377,8 @@
         private System.Windows.Forms.Button btnMarcas;
         private System.Windows.Forms.Button btnCategorias;
         private System.Windows.Forms.TextBox txtFiltroAv;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Button btnSiguiente;
     }
 }
 
