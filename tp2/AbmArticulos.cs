@@ -258,6 +258,21 @@ namespace tp2
             //txtUrlImagen.Text = "";
             btnAgregarImagen.Enabled = false;
             //articulo.Imagenes.Add
+            Imagen aux =new Imagen();
+            aux.UrlImagen = txtUrlImagen.Text;
+            aux.ID = -1;
+            if (articulo != null)
+            {
+                aux.IdArticulo = articulo.ID;                
+            }
+            else
+            {
+                aux.IdArticulo = -1;
+            }
+            articulo.Imagenes.Add(aux);
+            //Guardo imagen si la levantó localmente:
+            if (archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP")))
+                File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
         }
     }
 }
