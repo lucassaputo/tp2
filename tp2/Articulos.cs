@@ -348,5 +348,28 @@ namespace tp2
                 }
             }
         }
+
+        // BAJA de Articulos
+        private void btnEliminarArticulo_Click(object sender, EventArgs e) 
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem; // selecciono el ARTICULO de la DGV que quiero eliminar
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("Seguro queres eliminar el articulo: " + seleccionado.Nombre + "?", "Eliminar Articulo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); // mensaje modal de confirmacion. El show es un method que devuelve un DialogResult
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    negocio.eliminar(seleccionado.ID); // aca le paso del articulo seleccionado, el ID
+                    Cargar(); // actualizo y muestro la grilla
+                }
+
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(x.ToString());
+            }
+
+        }
     }
 }

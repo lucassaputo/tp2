@@ -29,6 +29,7 @@ namespace tp2
         private void FormCategoria_Load(object sender, EventArgs e)
         {
             Cargar();
+            //ocultarColumnas(); para no mostrar la columna de ID de Categorias
         }
 
         private void Cargar()
@@ -134,6 +135,11 @@ namespace tp2
         {
             txtCategoria.Text = dgvCategorias.CurrentRow.Cells[1].Value.ToString(); // seteo el valor del textbox con la descripcion de la categoria seleccionada
             txtIDCategoria.Text = dgvCategorias.CurrentRow.Cells[0].Value.ToString(); // seteo el valor del textbox con el ID de la categoria seleccionada
+        }
+
+        private void ocultarColumnas()
+        {
+            dgvCategorias.Columns["Id"].Visible = false;
         }
     }
 }
