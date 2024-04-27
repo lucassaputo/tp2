@@ -18,22 +18,24 @@ namespace tp2
     public partial class AbmArticulos : Form
     {
         private Articulo articulo = null;
-        private List<Imagen> imagenes =new List<Imagen>();
+        private List<Imagen> imagenes = new List<Imagen>();
         private OpenFileDialog archivo = null;
+        private Articulo articuloSeleccionado;
         public AbmArticulos()
         {
-            InitializeComponent();           
+            InitializeComponent();
         }
         public AbmArticulos(Articulo articulo)
         {
             InitializeComponent();
+            articuloSeleccionado = articulo;
             this.articulo = articulo;
             Text = "Modificar Articulo";
         }
 
         private void form_Load(object sender, EventArgs e)
         {
-            
+
             MarcaNegocio marcaNegocio = new MarcaNegocio();
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
             try
@@ -53,12 +55,12 @@ namespace tp2
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
 
-                   // txtUrlImagen.Text = articulo.UrlImagen;
+                    // txtUrlImagen.Text = articulo.UrlImagen;
                     //cargarImagen(articulo.UrlImagen);
                     cargarImagenes(articulo.Imagenes);
                     //cargarImagenes(10);
 
-                  //  txtUrlImagen.Text = articulo.UrlImagen;
+                    //  txtUrlImagen.Text = articulo.UrlImagen;
                     //cargarImagen(articulo.UrlImagen);
 
                     txtPrecio.Text = articulo.Precio.ToString("#0.00", System.Globalization.CultureInfo.InvariantCulture);
@@ -199,7 +201,7 @@ namespace tp2
                     id = negocioArticulo.buscarUltimo();
                     if (imagenes.Count > 0)
                     {
-                        for(int i = 0; i < imagenes.Count; i++)
+                        for (int i = 0; i < imagenes.Count; i++)
                         {
                             /* if (articulo.Imagenes[i].ID > -1)
                              {
@@ -208,7 +210,7 @@ namespace tp2
                              else
                              {*/
 
-                            imagenes[i].IdArticulo=id;
+                            imagenes[i].IdArticulo = id;
                             imagenNegocio.agregar(imagenes[i]);
 
                             //}
@@ -249,7 +251,7 @@ namespace tp2
                         File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
                 }
                 //txtUrlImagen.Text = archivo.SafeFileName;
-               // MessageBox.Show("EEE");
+                // MessageBox.Show("EEE");
                 cargarImagen(txtUrlImagen.Text);
             }
         }
@@ -267,7 +269,7 @@ namespace tp2
             //txtUrlImagen.Text = "";
             btnAgregarImagen.Enabled = false;
             //articulo.Imagenes.Add
-            Imagen aux =new Imagen();
+            Imagen aux = new Imagen();
             aux.UrlImagen = txtUrlImagen.Text;
             aux.ID = -1;
             if (articulo != null)
@@ -279,7 +281,86 @@ namespace tp2
             {
                 aux.IdArticulo = -1;
                 imagenes.Add(aux);
-            }            
+            }
+        }
+
+        private void btnAdelante_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (articuloSeleccionado != null && articuloSeleccionado.Imagenes.Count > 0)
+                {
+                    List<Imagen> imagenes = new List<Imagen>();
+                    imagenes = articuloSeleccionado.Imagenes;
+                    int i = 0;
+                    foreach (Imagen img in imagenes)
+                    {
+                        if (img.UrlImagen == pbxArticulo.ImageLocation)
+                        {
+                            if (i == imagenes.Count - 1)
+                            {
+                                cargarImagen(imagenes[0].UrlImagen);
+                                break;
+                            }
+                            else
+                            {
+                                cargarImagen(imagenes[i + 1].UrlImagen);
+                                break;
+                            }
+                        }
+                        i++;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay imagenes para mostrar.");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (articuloSeleccionado != null && articuloSeleccionado.Imagenes.Count > 0)
+                {
+                    List<Imagen> imagenes = new List<Imagen>();
+                    imagenes = articuloSeleccionado.Imagenes;
+                    int i = 0;
+                    foreach (Imagen img in imagenes)
+                    {
+                        if (img.UrlImagen == pbxArticulo.ImageLocation)
+                        {
+                            if (i == 0)
+                            {
+                                cargarImagen(imagenes[imagenes.Count - 1].UrlImagen);
+                                break;
+                            }
+                            else
+                            {
+                                cargarImagen(imagenes[i - 1].UrlImagen);
+                                break;
+                            }
+                        }
+                        i++;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay imagenes para mostrar.");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+
         }
     }
 }
