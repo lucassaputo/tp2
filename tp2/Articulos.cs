@@ -186,7 +186,7 @@ namespace tp2
             }
             if (cboCampo.SelectedItem.ToString() == "Precio")
             {
-                if (string.IsNullOrEmpty(txtFiltroAvanzado.Text))
+                if (string.IsNullOrEmpty(txtFiltroAv.Text))
                 {
                     MessageBox.Show("Debes cargar el filtro para numérico");
                     return true;
