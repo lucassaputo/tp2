@@ -57,10 +57,14 @@ namespace tp2
 
             try
             {
-                datos.setearConsulta("insert into CATEGORIAS (Descripcion) values (@Descripcion)");
-                datos.setearParametro("@Descripcion", txtCategoria.Text); // seteo el valor del parametro descipcion con el valor del textbox txtCategoria
-                datos.ejecutarAccion(); //ejecuto la accion de agrear a la BD
-                Cargar(); // finalmente lo cargo y muestro la grilla actualizada
+                DialogResult respuesta = MessageBox.Show("Estas seguro de insertar la nueva categoria?", "Agregar categoria", MessageBoxButtons.YesNo, MessageBoxIcon.Question); // mensaje modal de confirmacion para que el usuario confirme
+                if (respuesta == DialogResult.Yes)
+                {
+                    datos.setearConsulta("insert into CATEGORIAS (Descripcion) values (@Descripcion)");
+                    datos.setearParametro("@Descripcion", txtCategoria.Text); // seteo el valor del parametro descipcion con el valor del textbox txtCategoria
+                    datos.ejecutarAccion(); //ejecuto la accion de agrear a la BD
+                    Cargar(); // finalmente lo cargo y muestro la grilla actualizada
+                }
             }
             catch (Exception ex)
             {
