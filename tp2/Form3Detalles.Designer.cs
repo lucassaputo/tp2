@@ -42,12 +42,14 @@
             this.lblPreci = new System.Windows.Forms.Label();
             this.lblMarc = new System.Windows.Forms.Label();
             this.lblCat = new System.Windows.Forms.Label();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.btnSiguiente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pibVerDetalle)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(941, 500);
+            this.btnBack.Location = new System.Drawing.Point(230, 569);
             this.btnBack.Margin = new System.Windows.Forms.Padding(4);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(109, 39);
@@ -58,10 +60,10 @@
             // 
             // pibVerDetalle
             // 
-            this.pibVerDetalle.Location = new System.Drawing.Point(79, 149);
+            this.pibVerDetalle.Location = new System.Drawing.Point(115, 206);
             this.pibVerDetalle.Margin = new System.Windows.Forms.Padding(4);
             this.pibVerDetalle.Name = "pibVerDetalle";
-            this.pibVerDetalle.Size = new System.Drawing.Size(885, 311);
+            this.pibVerDetalle.Size = new System.Drawing.Size(337, 311);
             this.pibVerDetalle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pibVerDetalle.TabIndex = 3;
             this.pibVerDetalle.TabStop = false;
@@ -90,7 +92,7 @@
             // 
             this.lblMarca.AutoSize = true;
             this.lblMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarca.Location = new System.Drawing.Point(319, 500);
+            this.lblMarca.Location = new System.Drawing.Point(477, 94);
             this.lblMarca.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMarca.Name = "lblMarca";
             this.lblMarca.Size = new System.Drawing.Size(0, 16);
@@ -100,7 +102,7 @@
             // 
             this.lblPrecioArticulo.AutoSize = true;
             this.lblPrecioArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioArticulo.Location = new System.Drawing.Point(129, 500);
+            this.lblPrecioArticulo.Location = new System.Drawing.Point(144, 148);
             this.lblPrecioArticulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrecioArticulo.Name = "lblPrecioArticulo";
             this.lblPrecioArticulo.Size = new System.Drawing.Size(0, 16);
@@ -110,7 +112,7 @@
             // 
             this.lblCategoriaArticulo.AutoSize = true;
             this.lblCategoriaArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoriaArticulo.Location = new System.Drawing.Point(609, 500);
+            this.lblCategoriaArticulo.Location = new System.Drawing.Point(507, 148);
             this.lblCategoriaArticulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCategoriaArticulo.Name = "lblCategoriaArticulo";
             this.lblCategoriaArticulo.Size = new System.Drawing.Size(0, 16);
@@ -120,7 +122,7 @@
             // 
             this.lblCodigoArticulo.AutoSize = true;
             this.lblCodigoArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoArticulo.Location = new System.Drawing.Point(880, 53);
+            this.lblCodigoArticulo.Location = new System.Drawing.Point(562, 37);
             this.lblCodigoArticulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCodigoArticulo.Name = "lblCodigoArticulo";
             this.lblCodigoArticulo.Size = new System.Drawing.Size(0, 16);
@@ -147,7 +149,7 @@
             // lblCodArt
             // 
             this.lblCodArt.AutoSize = true;
-            this.lblCodArt.Location = new System.Drawing.Point(740, 53);
+            this.lblCodArt.Location = new System.Drawing.Point(422, 37);
             this.lblCodArt.Name = "lblCodArt";
             this.lblCodArt.Size = new System.Drawing.Size(120, 16);
             this.lblCodArt.TabIndex = 13;
@@ -156,7 +158,7 @@
             // lblPreci
             // 
             this.lblPreci.AutoSize = true;
-            this.lblPreci.Location = new System.Drawing.Point(65, 500);
+            this.lblPreci.Location = new System.Drawing.Point(80, 148);
             this.lblPreci.Name = "lblPreci";
             this.lblPreci.Size = new System.Drawing.Size(49, 16);
             this.lblPreci.TabIndex = 14;
@@ -165,7 +167,7 @@
             // lblMarc
             // 
             this.lblMarc.AutoSize = true;
-            this.lblMarc.Location = new System.Drawing.Point(264, 500);
+            this.lblMarc.Location = new System.Drawing.Point(422, 94);
             this.lblMarc.Name = "lblMarc";
             this.lblMarc.Size = new System.Drawing.Size(48, 16);
             this.lblMarc.TabIndex = 15;
@@ -174,17 +176,39 @@
             // lblCat
             // 
             this.lblCat.AutoSize = true;
-            this.lblCat.Location = new System.Drawing.Point(524, 500);
+            this.lblCat.Location = new System.Drawing.Point(422, 148);
             this.lblCat.Name = "lblCat";
             this.lblCat.Size = new System.Drawing.Size(69, 16);
             this.lblCat.TabIndex = 16;
             this.lblCat.Text = "Categoría:";
             // 
+            // btnPrev
+            // 
+            this.btnPrev.Location = new System.Drawing.Point(62, 206);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(27, 311);
+            this.btnPrev.TabIndex = 17;
+            this.btnPrev.Text = "<";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // btnSiguiente
+            // 
+            this.btnSiguiente.Location = new System.Drawing.Point(480, 206);
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(27, 311);
+            this.btnSiguiente.TabIndex = 18;
+            this.btnSiguiente.Text = ">";
+            this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
+            // 
             // frmDetalles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(656, 664);
+            this.Controls.Add(this.btnSiguiente);
+            this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.lblCat);
             this.Controls.Add(this.lblMarc);
             this.Controls.Add(this.lblPreci);
@@ -225,5 +249,7 @@
         private System.Windows.Forms.Label lblPreci;
         private System.Windows.Forms.Label lblMarc;
         private System.Windows.Forms.Label lblCat;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Button btnSiguiente;
     }
 }
