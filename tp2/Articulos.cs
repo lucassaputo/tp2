@@ -191,7 +191,7 @@ namespace tp2
                     MessageBox.Show("Debes cargar el filtro para numérico");
                     return true;
                 }
-                if (!(soloNumeros(txtFiltroAvanzado.Text)))
+                if (!(soloNumeros(txtFiltroAv.Text)))
                 {
                     MessageBox.Show("Ingrese sólo números para filtrar por precio");
                     return true;
