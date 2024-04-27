@@ -40,10 +40,25 @@ namespace tp2
             }
         }
 
+        private bool ValidarDescripcion(string descripcion)
+        {
+            if (string.IsNullOrWhiteSpace(descripcion))
+            {
+                MessageBox.Show("Por favor ingrese una marca válida.");
+                return false;
+            }
+
+            return true;
+        }
+
         private void btnEditarMarca_Click(object sender, EventArgs e)
         {
             AccesoDatos datos = new AccesoDatos();
 
+            if (!ValidarDescripcion(txtMarca.Text))
+            {
+                return;
+            }
             try
             {
                 datos.setearConsulta("update MARCAS set Descripcion = @Descripcion where ID = @ID");
@@ -65,8 +80,11 @@ namespace tp2
         private void btnAgregarMarca_Click(object sender, EventArgs ea)
         {
                        
-            AccesoDatos datos = new AccesoDatos();
-            
+            AccesoDatos datos = new AccesoDatos();          
+            if (!ValidarDescripcion(txtMarca.Text))
+            {
+                return;
+            }
             try
             {
                 datos.setearConsulta("insert into MARCAS (Descripcion) values (@Descripcion)");

@@ -53,7 +53,7 @@
             this.dgvMarcas.RowHeadersWidth = 51;
             this.dgvMarcas.RowTemplate.Height = 24;
             this.dgvMarcas.Size = new System.Drawing.Size(271, 287);
-            this.dgvMarcas.TabIndex = 0;
+            this.dgvMarcas.TabIndex = 4;
             this.dgvMarcas.SelectionChanged += new System.EventHandler(this.dgvMarcas_SelectionChanged);
             // 
             // btnAgregarMarca
@@ -63,7 +63,7 @@
             this.btnAgregarMarca.Location = new System.Drawing.Point(6, 38);
             this.btnAgregarMarca.Name = "btnAgregarMarca";
             this.btnAgregarMarca.Size = new System.Drawing.Size(82, 37);
-            this.btnAgregarMarca.TabIndex = 1;
+            this.btnAgregarMarca.TabIndex = 0;
             this.btnAgregarMarca.Text = "Agregar Marca";
             this.btnAgregarMarca.UseVisualStyleBackColor = false;
             this.btnAgregarMarca.Click += new System.EventHandler(this.btnAgregarMarca_Click);
@@ -75,7 +75,7 @@
             this.btnEditarMarca.Location = new System.Drawing.Point(121, 38);
             this.btnEditarMarca.Name = "btnEditarMarca";
             this.btnEditarMarca.Size = new System.Drawing.Size(82, 37);
-            this.btnEditarMarca.TabIndex = 2;
+            this.btnEditarMarca.TabIndex = 1;
             this.btnEditarMarca.Text = "Editar Marca";
             this.btnEditarMarca.UseVisualStyleBackColor = false;
             this.btnEditarMarca.Click += new System.EventHandler(this.btnEditarMarca_Click);
@@ -87,7 +87,7 @@
             this.btnEliminarMarca.Location = new System.Drawing.Point(238, 38);
             this.btnEliminarMarca.Name = "btnEliminarMarca";
             this.btnEliminarMarca.Size = new System.Drawing.Size(82, 37);
-            this.btnEliminarMarca.TabIndex = 3;
+            this.btnEliminarMarca.TabIndex = 2;
             this.btnEliminarMarca.Text = "Eliminar Marca";
             this.btnEliminarMarca.UseVisualStyleBackColor = false;
             this.btnEliminarMarca.Click += new System.EventHandler(this.btnEliminarMarca_Click);
@@ -96,22 +96,22 @@
             // 
             this.txtIdMarca.Location = new System.Drawing.Point(12, 342);
             this.txtIdMarca.Name = "txtIdMarca";
-            this.txtIdMarca.Size = new System.Drawing.Size(92, 20);
-            this.txtIdMarca.TabIndex = 4;
+            this.txtIdMarca.Size = new System.Drawing.Size(92, 22);
+            this.txtIdMarca.TabIndex = 0;
             // 
             // txtMarca
             // 
             this.txtMarca.Location = new System.Drawing.Point(163, 342);
             this.txtMarca.Name = "txtMarca";
-            this.txtMarca.Size = new System.Drawing.Size(292, 20);
-            this.txtMarca.TabIndex = 5;
+            this.txtMarca.Size = new System.Drawing.Size(292, 22);
+            this.txtMarca.TabIndex = 1;
             // 
             // lblIDMarca
             // 
             this.lblIDMarca.AutoSize = true;
             this.lblIDMarca.Location = new System.Drawing.Point(12, 320);
             this.lblIDMarca.Name = "lblIDMarca";
-            this.lblIDMarca.Size = new System.Drawing.Size(125, 13);
+            this.lblIDMarca.Size = new System.Drawing.Size(156, 16);
             this.lblIDMarca.TabIndex = 6;
             this.lblIDMarca.Text = "Ingrese el ID de la marca";
             // 
@@ -120,7 +120,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(163, 323);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 13);
+            this.label1.Size = new System.Drawing.Size(107, 16);
             this.label1.TabIndex = 7;
             this.label1.Text = "Ingrese la Marca";
             // 
@@ -129,7 +129,7 @@
             this.btnSalir.Location = new System.Drawing.Point(373, 426);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(82, 32);
-            this.btnSalir.TabIndex = 8;
+            this.btnSalir.TabIndex = 3;
             this.btnSalir.Text = "Volver";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
@@ -145,7 +145,7 @@
             this.groupBoxABCcategorias.Location = new System.Drawing.Point(15, 380);
             this.groupBoxABCcategorias.Name = "groupBoxABCcategorias";
             this.groupBoxABCcategorias.Size = new System.Drawing.Size(326, 81);
-            this.groupBoxABCcategorias.TabIndex = 14;
+            this.groupBoxABCcategorias.TabIndex = 2;
             this.groupBoxABCcategorias.TabStop = false;
             // 
             // lblEliminarCategoria
@@ -153,7 +153,7 @@
             this.lblEliminarCategoria.AutoSize = true;
             this.lblEliminarCategoria.Location = new System.Drawing.Point(250, 11);
             this.lblEliminarCategoria.Name = "lblEliminarCategoria";
-            this.lblEliminarCategoria.Size = new System.Drawing.Size(43, 13);
+            this.lblEliminarCategoria.Size = new System.Drawing.Size(55, 16);
             this.lblEliminarCategoria.TabIndex = 5;
             this.lblEliminarCategoria.Text = "Eliminar";
             // 
@@ -162,7 +162,7 @@
             this.lblModificarCategoria.AutoSize = true;
             this.lblModificarCategoria.Location = new System.Drawing.Point(135, 11);
             this.lblModificarCategoria.Name = "lblModificarCategoria";
-            this.lblModificarCategoria.Size = new System.Drawing.Size(50, 13);
+            this.lblModificarCategoria.Size = new System.Drawing.Size(62, 16);
             this.lblModificarCategoria.TabIndex = 4;
             this.lblModificarCategoria.Text = "Modificar";
             // 
@@ -171,7 +171,7 @@
             this.lblAgregarMarca.AutoSize = true;
             this.lblAgregarMarca.Location = new System.Drawing.Point(19, 11);
             this.lblAgregarMarca.Name = "lblAgregarMarca";
-            this.lblAgregarMarca.Size = new System.Drawing.Size(41, 13);
+            this.lblAgregarMarca.Size = new System.Drawing.Size(52, 16);
             this.lblAgregarMarca.TabIndex = 3;
             this.lblAgregarMarca.Text = "Agegar";
             // 

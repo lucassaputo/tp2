@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using dominio;
@@ -22,7 +23,8 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Marca aux = new Marca();
-                    aux.ID = (int)datos.Lector["ID"];
+                    if (!(datos.Lector["ID"] is DBNull))
+                        aux.ID = (int)datos.Lector["ID"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     lista.Add(aux);
                 }
