@@ -130,10 +130,10 @@ namespace Negocio
             }
         }
 
-        public void agregar2(Articulo nuevo)
+        public int agregar2(Articulo nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
-
+            int id = -1;
             try
             {
                 datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio)values( @Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @Precio)");
@@ -147,6 +147,12 @@ namespace Negocio
                 datos.ejecutarAccion();
                 //string x = (string)datos.Lector["ID"];
                 //return x;
+                while (datos.Lector.Read())
+                {
+                    //Articulo aux = new Articulo();
+                    id = (int)datos.Lector["ID"];
+                }
+                return id;
 
             }
             catch (Exception ex)

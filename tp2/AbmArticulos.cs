@@ -18,7 +18,7 @@ namespace tp2
     public partial class AbmArticulos : Form
     {
         private Articulo articulo = null;
-        private List<Imagen> imagenes;
+        private List<Imagen> imagenes =new List<Imagen>();
         private OpenFileDialog archivo = null;
         public AbmArticulos()
         {
@@ -194,11 +194,12 @@ namespace tp2
                 }
                 else
                 {
-                    negocioArticulo.agregar2(articulo);
+                    int ii = negocioArticulo.agregar2(articulo);
+                    MessageBox.Show(Convert.ToString(ii));
                     id = negocioArticulo.buscarUltimo();
-                    if (articulo.Imagenes.Count > 0)
+                    if (imagenes.Count > 0)
                     {
-                        for(int i = 0; i < articulo.Imagenes.Count; i++)
+                        for(int i = 0; i < imagenes.Count; i++)
                         {
                             /* if (articulo.Imagenes[i].ID > -1)
                              {
@@ -206,8 +207,10 @@ namespace tp2
                              }
                              else
                              {*/
-                            articulo.Imagenes[i].IdArticulo=id;
-                            imagenNegocio.agregar(articulo.Imagenes[i]);
+
+                            imagenes[i].IdArticulo=id;
+                            imagenNegocio.agregar(imagenes[i]);
+
                             //}
                         }
                     }
@@ -233,16 +236,21 @@ namespace tp2
             cargarImagen(txtUrlImagen.Text);
         }
 
-
-
         private void btnAgregarImagen_Click(object sender, EventArgs e)
         {
             archivo = new OpenFileDialog();
             archivo.Filter = "jpg|*.jpg;|png|*.png";
             if (archivo.ShowDialog() == DialogResult.OK)
             {
-                txtUrlImagen.Text = archivo.FileName;
-                cargarImagen(archivo.FileName);
+                if (!(txtUrlImagen.Text.ToUpper().Contains("HTTP")))
+                {
+                    txtUrlImagen.Text = ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName;
+                    if (archivo != null)
+                        File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+                }
+                //txtUrlImagen.Text = archivo.SafeFileName;
+               // MessageBox.Show("EEE");
+                cargarImagen(txtUrlImagen.Text);
             }
         }
 
@@ -264,16 +272,14 @@ namespace tp2
             aux.ID = -1;
             if (articulo != null)
             {
-                aux.IdArticulo = articulo.ID;                
+                aux.IdArticulo = articulo.ID;
+                articulo.Imagenes.Add(aux);
             }
             else
             {
                 aux.IdArticulo = -1;
-            }
-            articulo.Imagenes.Add(aux);
-            //Guardo imagen si la levantó localmente:
-            if (archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP")))
-                File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+                imagenes.Add(aux);
+            }            
         }
     }
 }
