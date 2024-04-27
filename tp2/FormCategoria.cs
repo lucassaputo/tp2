@@ -124,20 +124,12 @@ namespace tp2
             {
                 datos.cerrarConexion();
             }
-
-
-
-
-
         }
 
         private void dgvCategorias_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvCategorias.SelectedRows.Count > 0)
-            {
-                txtIDCategoria.Text = dgvCategorias.SelectedRows[0].Cells[0].Value.ToString(); //le asigno al TXTID el ID de la row seleccionada
-                txtCategoria.Text = dgvCategorias.SelectedRows[0].Cells[1].Value.ToString(); // le asigno al TXTCat la descripcion de la row qseleccionada, es Cells 1 porque es la segunda columna.
-            }
+            txtCategoria.Text = dgvCategorias.CurrentRow.Cells[1].Value.ToString(); // seteo el valor del textbox con la descripcion de la categoria seleccionada
+            txtIDCategoria.Text = dgvCategorias.CurrentRow.Cells[0].Value.ToString(); // seteo el valor del textbox con el ID de la categoria seleccionada
         }
     }
 }
