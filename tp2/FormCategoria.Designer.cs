@@ -62,7 +62,7 @@
             this.dgvCategorias.Name = "dgvCategorias";
             this.dgvCategorias.RowHeadersWidth = 51;
             this.dgvCategorias.RowTemplate.Height = 24;
-            this.dgvCategorias.Size = new System.Drawing.Size(261, 291);
+            this.dgvCategorias.Size = new System.Drawing.Size(254, 291);
             this.dgvCategorias.TabIndex = 2;
             this.dgvCategorias.SelectionChanged += new System.EventHandler(this.dgvCategorias_SelectionChanged);
             // 
