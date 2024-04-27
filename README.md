@@ -1,32 +1,33 @@
 # TP 2 - WinForm
 # Consigna
 
-Se necesita una aplicación para la gestión de artículos de un catálogo de un comercio. La aplicación debe ser genérica, es decir, aplicar para cualquier tipo de comercio; y la información que en ella se cargue será consumida luego desde distintos servicios para ser mostradas ya sea en webs, e-commerces, apps mobile, revistas, etc. Esto no es parte del desarrollo, pero sí del contexto en el cual se utilizará la aplicación a desarrollar.
+Se necesita una aplicaciÃ³n para la gestiÃ³n de artÃ­culos de un catÃ¡logo de un comercio. La aplicaciÃ³n debe ser genÃ©rica, es decir, aplicar para cualquier tipo de comercio; y la informaciÃ³n que en ella se cargue serÃ¡ consumida luego desde distintos servicios para ser mostradas ya sea en webs, e-commerces, apps mobile, revistas, etc. Esto no es parte del desarrollo, pero sÃ­ del contexto en el cual se utilizarÃ¡ la aplicaciÃ³n a desarrollar.
 
-Deberá ser un programa de escritorio que contemple la administración de artículos. Las funcionalidades que deberá tener la aplicación serán:
--   Listado de artículos.
--   Búsqueda de artículos por distintos criterios.
--   Agregar artículos.
--   Modificar artículos.
--   Eliminar artículos.
--   Ver detalle de un artículo. 
-- 
-Toda ésta información deberá ser persistida en una base de datos ya existente (la cual se adjunta).
+DeberÃ¡ ser un programa de escritorio que contemple la administraciÃ³n de artÃ­culos. Las funcionalidades que deberÃ¡ tener la aplicaciÃ³n serÃ¡n:
+-   Listado de artÃ­culos.
+-   BÃºsqueda de artÃ­culos por distintos criterios.
+-   Agregar artÃ­culos.
+-   Modificar artÃ­culos.
+-   Eliminar artÃ­culos.
+-   Ver detalle de un artÃ­culo. 
+  
+Toda Ã©sta informaciÃ³n deberÃ¡ ser persistida en una base de datos ya existente (la cual se adjunta).
 
-Los datos mínimos con los que deberá contar el artículo son los siguientes:
+Los datos mÃ­nimos con los que deberÃ¡ contar el artÃ­culo son los siguientes:
 
--   Código de artículo.
+-   CÃ³digo de artÃ­culo.
 -   Nombre.
--   Descripción.
+-   DescripciÃ³n.
 -   Marca (seleccionable de una lista desplegable).
--   Categoría (seleccionable de una lista desplegable.
+-   CategorÃ­a (seleccionable de una lista desplegable.
 -   Imagen.
 -   Precio.
 
-El programa debe permitir administrar las Marcas y Categorías disponibles en el programa. Además, un producto podría llegar a tener una o más imágenes, sin un límite establecido. Esto debe estar contemplado en la gestión del artículo.
+El programa debe permitir administrar las Marcas y CategorÃ­as disponibles en el programa. AdemÃ¡s, un producto podrÃ­a llegar a tener una o mÃ¡s imÃ¡genes, sin un lÃ­mite establecido. Esto debe estar contemplado en la gestiÃ³n del artÃ­culo.
 
-**Etapa 1:**  Construir las clases necesarias para el modelo de dicha aplicación junto a las ventanas con las que contará y su navegación.
+**Etapa 1:**  Construir las clases necesarias para el modelo de dicha aplicaciÃ³n junto a las ventanas con las que contarÃ¡ y su navegaciÃ³n.
 
-**Etapa 2:**  Construir la interacción con la base de datos y validaciones correspondiente para dar vida a la funcionalidad.
+**Etapa 2:**  Construir la interacciÃ³n con la base de datos y validaciones correspondiente para dar vida a la funcionalidad.
 
 ## DER 
+![image](https://github.com/lucassaputo/tp2/assets/84545453/b94813ef-4e8f-4f38-8025-c6003998055e)
