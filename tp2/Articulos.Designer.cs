@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Articulos));
             this.dgvArticulos = new System.Windows.Forms.DataGridView();
             this.pibArticulos = new System.Windows.Forms.PictureBox();
             this.btnDetalleArticulo = new System.Windows.Forms.Button();
@@ -43,10 +42,6 @@
             this.cboCampo = new System.Windows.Forms.ComboBox();
             this.cboCriterio = new System.Windows.Forms.ComboBox();
             this.btnBuscarAvanzado = new System.Windows.Forms.Button();
-            this.btnMenuAgregarArt = new System.Windows.Forms.ToolStripButton();
-            this.btnMenuModificarArt = new System.Windows.Forms.ToolStripButton();
-            this.btnMenuEliminarArt = new System.Windows.Forms.ToolStripButton();
-            this.btnMenuBuscarArt = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnMarcas = new System.Windows.Forms.Button();
             this.btnCategorias = new System.Windows.Forms.Button();
@@ -55,7 +50,6 @@
             this.btnSiguiente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pibArticulos)).BeginInit();
-            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvArticulos
@@ -68,13 +62,13 @@
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvArticulos.RowTemplate.Height = 24;
-            this.dgvArticulos.Size = new System.Drawing.Size(749, 283);
+            this.dgvArticulos.Size = new System.Drawing.Size(844, 283);
             this.dgvArticulos.TabIndex = 0;
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
             // pibArticulos
             // 
-            this.pibArticulos.Location = new System.Drawing.Point(796, 94);
+            this.pibArticulos.Location = new System.Drawing.Point(883, 94);
             this.pibArticulos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pibArticulos.Name = "pibArticulos";
             this.pibArticulos.Size = new System.Drawing.Size(300, 283);
@@ -208,53 +202,12 @@
             this.btnBuscarAvanzado.UseVisualStyleBackColor = true;
             this.btnBuscarAvanzado.Click += new System.EventHandler(this.btnBuscarAvanzado_Click);
             // 
-            // btnMenuAgregarArt
-            // 
-            this.btnMenuAgregarArt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnMenuAgregarArt.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuAgregarArt.Image")));
-            this.btnMenuAgregarArt.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnMenuAgregarArt.Name = "btnMenuAgregarArt";
-            this.btnMenuAgregarArt.Size = new System.Drawing.Size(29, 24);
-            this.btnMenuAgregarArt.Text = "toolStripButton1";
-            // 
-            // btnMenuModificarArt
-            // 
-            this.btnMenuModificarArt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnMenuModificarArt.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuModificarArt.Image")));
-            this.btnMenuModificarArt.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnMenuModificarArt.Name = "btnMenuModificarArt";
-            this.btnMenuModificarArt.Size = new System.Drawing.Size(29, 24);
-            this.btnMenuModificarArt.Text = "toolStripButton2";
-            // 
-            // btnMenuEliminarArt
-            // 
-            this.btnMenuEliminarArt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnMenuEliminarArt.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuEliminarArt.Image")));
-            this.btnMenuEliminarArt.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnMenuEliminarArt.Name = "btnMenuEliminarArt";
-            this.btnMenuEliminarArt.Size = new System.Drawing.Size(29, 24);
-            this.btnMenuEliminarArt.Text = "toolStripButton3";
-            // 
-            // btnMenuBuscarArt
-            // 
-            this.btnMenuBuscarArt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnMenuBuscarArt.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuBuscarArt.Image")));
-            this.btnMenuBuscarArt.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnMenuBuscarArt.Name = "btnMenuBuscarArt";
-            this.btnMenuBuscarArt.Size = new System.Drawing.Size(29, 24);
-            this.btnMenuBuscarArt.Text = "toolStripButton4";
-            // 
             // toolStrip1
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnMenuAgregarArt,
-            this.btnMenuModificarArt,
-            this.btnMenuEliminarArt,
-            this.btnMenuBuscarArt});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1251, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1251, 25);
             this.toolStrip1.TabIndex = 15;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -293,7 +246,7 @@
             // 
             // btnPrev
             // 
-            this.btnPrev.Location = new System.Drawing.Point(814, 394);
+            this.btnPrev.Location = new System.Drawing.Point(906, 394);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(75, 23);
             this.btnPrev.TabIndex = 19;
@@ -303,7 +256,7 @@
             // 
             // btnSiguiente
             // 
-            this.btnSiguiente.Location = new System.Drawing.Point(993, 394);
+            this.btnSiguiente.Location = new System.Drawing.Point(1085, 394);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(75, 23);
             this.btnSiguiente.TabIndex = 20;
@@ -345,8 +298,6 @@
             this.Load += new System.EventHandler(this.FormCatalogo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pibArticulos)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,10 +320,6 @@
         private System.Windows.Forms.ComboBox cboCriterio;
         private System.Windows.Forms.TextBox txtFiltroAvanzado;
         private System.Windows.Forms.Button btnBuscarAvanzado;
-        private System.Windows.Forms.ToolStripButton btnMenuAgregarArt;
-        private System.Windows.Forms.ToolStripButton btnMenuModificarArt;
-        private System.Windows.Forms.ToolStripButton btnMenuEliminarArt;
-        private System.Windows.Forms.ToolStripButton btnMenuBuscarArt;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Button btnMarcas;
         private System.Windows.Forms.Button btnCategorias;

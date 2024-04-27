@@ -14,10 +14,11 @@ namespace tp2
 {
     public partial class frmDetalles : Form
     {
+        private Articulo articuloSeleccionado;
         public frmDetalles(Articulo seleccionado)
         {
             InitializeComponent();
-
+            articuloSeleccionado = seleccionado;
             lblNombreArticulo.Text = seleccionado.Nombre;
             lblDescripcionArticulo.Text = seleccionado.Descripcion;
             lblPrecioArticulo.Text = seleccionado.Precio.ToString();
@@ -57,5 +58,60 @@ namespace tp2
             }
         }
 
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            if(articuloSeleccionado .Imagenes.Count > 0)
+            {
+                List<Imagen> imagenes = new List<Imagen>();
+                imagenes = articuloSeleccionado.Imagenes;
+                int i = 0;
+                foreach (Imagen img in imagenes)
+                {
+                    if (img.UrlImagen == pibVerDetalle.ImageLocation)
+                    {
+                        if (i == imagenes.Count - 1)
+                        {
+                            CargarImagen(imagenes[0].UrlImagen);
+                            break;
+                        }
+                        else
+                        {
+                            CargarImagen(imagenes[i + 1].UrlImagen);
+                            break;
+                        }
+                    }
+                    i++;
+                }
+            }
+           
+
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (articuloSeleccionado.Imagenes.Count > 0)
+            {
+                List<Imagen> imagenes = new List<Imagen>();
+                imagenes = articuloSeleccionado.Imagenes;
+                int i = 0;
+                foreach (Imagen img in imagenes)
+                {
+                    if (img.UrlImagen == pibVerDetalle.ImageLocation)
+                    {
+                        if (i == 0)
+                        {
+                            CargarImagen(imagenes[imagenes.Count - 1].UrlImagen);
+                            break;
+                        }
+                        else
+                        {
+                            CargarImagen(imagenes[i - 1].UrlImagen);
+                            break;
+                        }
+                    }
+                    i++;
+                }
+            }
+        }
     }
 }
