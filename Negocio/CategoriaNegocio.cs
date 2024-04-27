@@ -40,8 +40,6 @@ namespace Negocio
         }
 
 
-
-
         public void eliminar(int id)
         {
 

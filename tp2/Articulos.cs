@@ -68,7 +68,7 @@ namespace tp2
 
         private void ocultarColumnas()
         {
-           // dgvArticulos.Columns["UrlImagen"].Visible = false;
+            // dgvArticulos.Columns["UrlImagen"].Visible = false;
             dgvArticulos.Columns["Id"].Visible = false;
         }
 
@@ -88,8 +88,8 @@ namespace tp2
 
         private void btnAgregarArticulo_Click(object sender, EventArgs e)
         {
-                AbmArticulos formABM = new AbmArticulos();
-                formABM.ShowDialog();           
+            AbmArticulos formABM = new AbmArticulos();
+            formABM.ShowDialog();
         }
 
         private void btnDetalleArticulo_Click(object sender, EventArgs e)
@@ -104,20 +104,20 @@ namespace tp2
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-            if(dgvArticulos.CurrentRow != null)
+            if (dgvArticulos.CurrentRow != null)
             {
                 Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
                 //CargarImagen(seleccionado.UrlImagen);
                 //MessageBox.Show(Convert.ToString(seleccionado.ID));
                 if (seleccionado.Imagenes.Count > 0)
                 {
-                   // MessageBox.Show("11111");
+                    // MessageBox.Show("11111");
                     //MessageBox.Show(seleccionado.Imagenes[0].UrlImagen);
                     CargarImagen(seleccionado.Imagenes[0].UrlImagen);
                 }
                 else
                 {
-                   // MessageBox.Show("222222");
+                    // MessageBox.Show("222222");
                     CargarImagen("XXX");
                 }
             }
@@ -145,9 +145,9 @@ namespace tp2
             List<Articulo> listaFiltrada;
             string filtro = txtBuscar.Text;
 
-            if(filtro != "")
+            if (filtro != "")
             {
-                listaFiltrada = listaArticulos.FindAll(k => k.Nombre.ToLower().Contains(filtro.ToLower()) || k.Descripcion.ToLower().Contains(filtro.ToLower()) || k.Precio.ToString().Contains(filtro) || k.Marca.Descripcion.ToLower().Contains(filtro.ToLower()) || k.Categoria.Descripcion.ToLower().Contains(filtro.ToLower()) );
+                listaFiltrada = listaArticulos.FindAll(k => k.Nombre.ToLower().Contains(filtro.ToLower()) || k.Descripcion.ToLower().Contains(filtro.ToLower()) || k.Precio.ToString().Contains(filtro) || k.Marca.Descripcion.ToLower().Contains(filtro.ToLower()) || k.Categoria.Descripcion.ToLower().Contains(filtro.ToLower()));
             }
             else
             {
@@ -174,24 +174,24 @@ namespace tp2
 
         private bool validarFiltro()
         {
-            if(cboCampo.SelectedIndex < 0)
+            if (cboCampo.SelectedIndex < 0)
             {
                 MessageBox.Show("Seleccione un campo para filtrar");
                 return true;
             }
-            if(cboCriterio.SelectedIndex < 0)
+            if (cboCriterio.SelectedIndex < 0)
             {
                 MessageBox.Show("Seleccione un criterio para filtrar");
                 return true;
             }
-            if(cboCampo.SelectedItem.ToString() == "Precio" )
+            if (cboCampo.SelectedItem.ToString() == "Precio")
             {
-                if(string.IsNullOrEmpty(txtFiltroAvanzado.Text))
+                if (string.IsNullOrEmpty(txtFiltroAv.Text))
                 {
                     MessageBox.Show("Debes cargar el filtro para numérico");
                     return true;
                 }
-                if (!(soloNumeros(txtFiltroAvanzado.Text)))
+                if (!(soloNumeros(txtFiltroAv.Text)))
                 {
                     MessageBox.Show("Ingrese sólo números para filtrar por precio");
                     return true;
@@ -228,7 +228,7 @@ namespace tp2
         {
             string opcion = cboCampo.SelectedItem.ToString();
 
-            if(opcion == "Precio")
+            if (opcion == "Precio")
             {
                 cboCriterio.Items.Clear();
                 cboCriterio.Items.Add("Mayor a");

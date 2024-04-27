@@ -207,8 +207,10 @@ namespace tp2
                              }
                              else
                              {*/
+
                             imagenes[i].IdArticulo=id;
                             imagenNegocio.agregar(imagenes[i]);
+
                             //}
                         }
                     }
