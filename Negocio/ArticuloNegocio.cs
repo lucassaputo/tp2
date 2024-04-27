@@ -23,7 +23,8 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
-                    aux.ID = (int)datos.Lector["ID"];
+                    if (!(datos.Lector["ID"] is DBNull))
+                        aux.ID = (int)datos.Lector["ID"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
@@ -71,7 +72,8 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
-                    aux.ID = (int)datos.Lector["ID"];
+                    if (!(datos.Lector["ID"] is DBNull))
+                        aux.ID = (int)datos.Lector["ID"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];                 
@@ -287,7 +289,8 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
-                    aux.ID = (int)datos.Lector["ID"];
+                    if (!(datos.Lector["ID"] is DBNull))
+                        aux.ID = (int)datos.Lector["ID"];
                     aux.Codigo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];

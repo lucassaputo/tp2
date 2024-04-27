@@ -81,8 +81,6 @@ namespace tp2
             catch (Exception ex)
             {
                 pibArticulos.Load("https://img.freepik.com/vector-premium/no-hay-foto-disponible-icono-vector-simbolo-imagen-predeterminado-imagen-proximamente-sitio-web-o-aplicacion-movil_87543-10615.jpg?w=826");
-                //pibArticulos.Load("https://intercompras.com/product_thumb_keepratio_2.php?img=images/product/SONY_KDL-55W950A.jpg&w=650&h=450");
-                //pibArticulos.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
             }
         }
 
@@ -95,11 +93,18 @@ namespace tp2
         private void btnDetalleArticulo_Click(object sender, EventArgs e)
         {
             Articulo seleccionado;
-            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            if (dgvArticulos.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un articulo en el listado.");
+            }
+            else
+            {
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
 
-            frmDetalles detalle = new frmDetalles(seleccionado);
-            detalle.ShowDialog();
-            Cargar();
+                frmDetalles detalle = new frmDetalles(seleccionado);
+                detalle.ShowDialog();
+                Cargar();
+            }
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
@@ -107,17 +112,12 @@ namespace tp2
             if (dgvArticulos.CurrentRow != null)
             {
                 Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-                //CargarImagen(seleccionado.UrlImagen);
-                //MessageBox.Show(Convert.ToString(seleccionado.ID));
                 if (seleccionado.Imagenes.Count > 0)
                 {
-                    // MessageBox.Show("11111");
-                    //MessageBox.Show(seleccionado.Imagenes[0].UrlImagen);
                     CargarImagen(seleccionado.Imagenes[0].UrlImagen);
                 }
                 else
                 {
-                    // MessageBox.Show("222222");
                     CargarImagen("XXX");
                 }
             }
@@ -140,6 +140,35 @@ namespace tp2
             }
         }
 
+        private void deshabilitarBotones()
+        {
+            
+            btnModificarArticulo.Enabled = false;
+            btnDetalleArticulo.Enabled = false;
+            btnEliminarArticulo.Enabled = false;
+            cboCampo.Enabled = false;
+            cboCriterio.Enabled = false;
+            txtFiltroAv.Enabled = false;
+            btnBuscarAvanzado.Enabled = false;
+            btnPrev.Enabled = false;
+            btnSiguiente.Enabled = false;
+            CargarImagen("Vacio");
+        }
+
+        private void habilitarBotones()
+        {
+            
+            btnModificarArticulo.Enabled = true;
+            btnDetalleArticulo.Enabled = true;
+            btnEliminarArticulo.Enabled = true;
+            cboCampo.Enabled = true;
+            cboCriterio.Enabled = true;
+            txtFiltroAv.Enabled = true;
+            btnBuscarAvanzado.Enabled = true;
+            btnPrev.Enabled = true;
+            btnSiguiente.Enabled = true;
+        }
+
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
             List<Articulo> listaFiltrada;
@@ -148,12 +177,17 @@ namespace tp2
             if (filtro != "")
             {
                 listaFiltrada = listaArticulos.FindAll(k => k.Nombre.ToLower().Contains(filtro.ToLower()) || k.Descripcion.ToLower().Contains(filtro.ToLower()) || k.Precio.ToString().Contains(filtro) || k.Marca.Descripcion.ToLower().Contains(filtro.ToLower()) || k.Categoria.Descripcion.ToLower().Contains(filtro.ToLower()));
+                deshabilitarBotones();
+                if (listaFiltrada.Count > 0 || filtro == "")
+                {
+                    habilitarBotones();
+                }
             }
             else
             {
+                habilitarBotones();
                 listaFiltrada = listaArticulos;
             }
-
             dgvArticulos.DataSource = null;
             dgvArticulos.DataSource = listaFiltrada;
             ocultarColumnas();
@@ -165,12 +199,12 @@ namespace tp2
             {
                 if (!char.IsNumber(c))
                 {
-                    MessageBox.Show("El campo debe ser numérico");
                     return false;
                 }
             }
             return true;
         }
+
 
         private bool validarFiltro()
         {
@@ -184,6 +218,10 @@ namespace tp2
                 MessageBox.Show("Seleccione un criterio para filtrar");
                 return true;
             }
+            if (string.IsNullOrEmpty(txtFiltroAv.Text))
+            {
+                return true;
+            }
             if (cboCampo.SelectedItem.ToString() == "Precio")
             {
                 if (string.IsNullOrEmpty(txtFiltroAv.Text))
@@ -193,10 +231,11 @@ namespace tp2
                 }
                 if (!(soloNumeros(txtFiltroAv.Text)))
                 {
-                    MessageBox.Show("Ingrese sólo números para filtrar por precio");
+                    MessageBox.Show("El campo debe ser numérico");
                     return true;
                 }
             }
+
 
             return false;
         }
@@ -205,7 +244,7 @@ namespace tp2
         private void btnBuscarAvanzado_Click(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-
+            dgvArticulos.DataSource = listaArticulos;
             try
             {
                 if (validarFiltro())
@@ -247,54 +286,66 @@ namespace tp2
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
             Articulo seleccionado = new Articulo();
-            List<Imagen> imagenes = new List<Imagen>();
-            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-            imagenes = seleccionado.Imagenes;
-            int i = 0;
-            foreach (Imagen img in imagenes)
+            if (dgvArticulos.CurrentRow == null)
             {
-                if (img.UrlImagen == pibArticulos.ImageLocation)
-                {
-                    if (i == imagenes.Count - 1)
-                    {
-                        CargarImagen(imagenes[0].UrlImagen);
-                        break;
-                    }
-                    else
-                    {
-                        CargarImagen(imagenes[i + 1].UrlImagen);
-                        break;
-                    }
-                }
-                i++;
+                MessageBox.Show("Seleccione un articulo en el listado.");
             }
-
-
+            else
+            {
+                List<Imagen> imagenes = new List<Imagen>();
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                imagenes = seleccionado.Imagenes;
+                int i = 0;
+                foreach (Imagen img in imagenes)
+                {
+                    if (img.UrlImagen == pibArticulos.ImageLocation)
+                    {
+                        if (i == imagenes.Count - 1)
+                        {
+                            CargarImagen(imagenes[0].UrlImagen);
+                            break;
+                        }
+                        else
+                        {
+                            CargarImagen(imagenes[i + 1].UrlImagen);
+                            break;
+                        }
+                    }
+                    i++;
+                }
+            }
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
             Articulo seleccionado = new Articulo();
-            List<Imagen> imagenes = new List<Imagen>();
-            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-            imagenes = seleccionado.Imagenes;
-            int i = 0;
-            foreach (Imagen img in imagenes)
+            if (dgvArticulos.CurrentRow == null)
             {
-                if (img.UrlImagen == pibArticulos.ImageLocation)
+                MessageBox.Show("Seleccione un articulo en el listado.");
+            }
+            else
+            {
+                List<Imagen> imagenes = new List<Imagen>();
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                imagenes = seleccionado.Imagenes;
+                int i = 0;
+                foreach (Imagen img in imagenes)
                 {
-                    if (i == 0)
+                    if (img.UrlImagen == pibArticulos.ImageLocation)
                     {
-                        CargarImagen(imagenes[imagenes.Count - 1].UrlImagen);
-                        break;
+                        if (i == 0)
+                        {
+                            CargarImagen(imagenes[imagenes.Count - 1].UrlImagen);
+                            break;
+                        }
+                        else
+                        {
+                            CargarImagen(imagenes[i - 1].UrlImagen);
+                            break;
+                        }
                     }
-                    else
-                    {
-                        CargarImagen(imagenes[i - 1].UrlImagen);
-                        break;
-                    }
+                    i++;
                 }
-                i++;
             }
         }
     }
