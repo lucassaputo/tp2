@@ -430,5 +430,60 @@ namespace tp2
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
+            int id;
+            if (articuloSeleccionado != null)
+            {
+                if (articuloSeleccionado.Imagenes.Count > 0)
+                {
+                    List<Imagen> imagenes = new List<Imagen>();
+                    
+                    imagenes = articuloSeleccionado.Imagenes;
+                    int i = 0;
+                    foreach (Imagen img in imagenes)
+                    {
+                        if (img.UrlImagen == pbxArticulo.ImageLocation)
+                        {
+                            id = img.ID;
+                            imagenNegocio.eliminar(id);
+                            cargarImagen("XXX");
+                            break;
+                        }
+                        i++;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay imagenes para mostrar.");
+                }
+            }
+            else
+            {
+                
+                if (imagenes.Count > 0)
+                {
+                    int i = 0;
+                    foreach (Imagen img in imagenes)
+                    {
+                        if (img.UrlImagen == pbxArticulo.ImageLocation)
+                        {
+                            id = img.ID;
+                            imagenNegocio.eliminar(id);
+                            cargarImagen("XXX");
+                            break;
+                        }
+                        i++;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay imagenes para mostrar.");
+                }
+            }
+
+        }
     }
 }
