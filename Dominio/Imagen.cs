@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TP_2
+namespace dominio
 {
-    public class Marca
+    public class Imagen
     {
         public int ID { get; set; }
-
-        public string Descripcion { get; set; }
+        public int IdArticulo { get; set; }
+        public string UrlImagen { get; set; }
     }
 }
