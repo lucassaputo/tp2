@@ -356,5 +356,61 @@ namespace tp2
             }
 
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e) // eliminar la img seleccionada
+        {
+            try
+            {
+                if (articuloSeleccionado != null) 
+                {
+                    if (articuloSeleccionado.Imagenes.Count > 0)
+                    {
+                        List<Imagen> imagenes = new List<Imagen>();
+                        imagenes = articuloSeleccionado.Imagenes;
+                        int i = 0;
+                        foreach (Imagen img in imagenes)
+                        {
+                            if (img.UrlImagen == pbxArticulo.ImageLocation)
+                            {
+                                imagenes.RemoveAt(i);
+                                cargarImagenes(imagenes);
+                                break;
+                            }
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay imagenes para eliminar.");
+                    }
+                }
+                else
+                {
+                    if (imagenes.Count > 0) // si tiene mas de una imagen
+                    {
+                        int i = 0; // pongo el indice en 0
+                        foreach (Imagen img in imagenes) // las recorro con un foreach
+                        {
+                            if (img.UrlImagen == pbxArticulo.ImageLocation)
+                            {
+                                imagenes.RemoveAt(i);
+                                cargarImagenes(imagenes);
+                                break;
+                            }
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay imagenes para eliminar.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
     }
 }

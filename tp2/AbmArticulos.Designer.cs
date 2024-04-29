@@ -205,7 +205,7 @@
             this.btnAceptar.BackColor = System.Drawing.Color.Cyan;
             this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAceptar.Location = new System.Drawing.Point(131, 217);
-            this.btnAceptar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAceptar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(114, 37);
             this.btnAceptar.TabIndex = 6;
@@ -218,7 +218,7 @@
             this.btnCancelar.BackColor = System.Drawing.Color.Cyan;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.Location = new System.Drawing.Point(12, 217);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(115, 37);
             this.btnCancelar.TabIndex = 7;
@@ -251,19 +251,20 @@
             this.btnEliminar.BackColor = System.Drawing.Color.Cyan;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Location = new System.Drawing.Point(345, 259);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(114, 37);
             this.btnEliminar.TabIndex = 12;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnAgregar
             // 
             this.btnAgregar.BackColor = System.Drawing.Color.Cyan;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.Location = new System.Drawing.Point(687, 217);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(114, 37);
             this.btnAgregar.TabIndex = 6;
@@ -277,7 +278,7 @@
             this.btnAceptarImagen.BackColor = System.Drawing.Color.Cyan;
             this.btnAceptarImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAceptarImagen.Location = new System.Drawing.Point(527, 319);
-            this.btnAceptarImagen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAceptarImagen.Margin = new System.Windows.Forms.Padding(2);
             this.btnAceptarImagen.Name = "btnAceptarImagen";
             this.btnAceptarImagen.Size = new System.Drawing.Size(28, 20);
             this.btnAceptarImagen.TabIndex = 9;
