@@ -88,6 +88,7 @@ namespace tp2
         {
             AbmArticulos formABM = new AbmArticulos();
             formABM.ShowDialog();
+            Cargar();
         }
 
         private void btnDetalleArticulo_Click(object sender, EventArgs e)
@@ -136,7 +137,7 @@ namespace tp2
 
                 AbmArticulos modificar = new AbmArticulos(seleccionado);
                 modificar.ShowDialog();
-                //cargar();
+                Cargar();
             }
         }
 
