@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -80,7 +81,8 @@ namespace tp2
             }
             catch (Exception ex)
             {
-                pibArticulos.Load("https://img.freepik.com/vector-premium/no-hay-foto-disponible-icono-vector-simbolo-imagen-predeterminado-imagen-proximamente-sitio-web-o-aplicacion-movil_87543-10615.jpg?w=826");
+                //pibArticulos.Load("https://img.freepik.com/vector-premium/no-hay-foto-disponible-icono-vector-simbolo-imagen-predeterminado-imagen-proximamente-sitio-web-o-aplicacion-movil_87543-10615.jpg?w=826");
+                pibArticulos.Load(ConfigurationManager.AppSettings["images-folder"] + "nodisponible.jpg");
             }
         }
 
@@ -88,6 +90,7 @@ namespace tp2
         {
             AbmArticulos formABM = new AbmArticulos();
             formABM.ShowDialog();
+            Cargar();
         }
 
         private void btnDetalleArticulo_Click(object sender, EventArgs e)
@@ -136,7 +139,7 @@ namespace tp2
 
                 AbmArticulos modificar = new AbmArticulos(seleccionado);
                 modificar.ShowDialog();
-                //cargar();
+                Cargar();
             }
         }
 
