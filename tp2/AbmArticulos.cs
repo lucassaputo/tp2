@@ -179,13 +179,10 @@ namespace tp2
             }
             else//alta
             {
-                //MessageBox.Show(archivo.FileName);
-                //MessageBox.Show(archivo.SafeFileName);
-                aux.UrlImagen = archivo.FileName;
+                aux.UrlImagen = txtUrlImagen.Text;
                 aux.ID = -1;
                 aux.IdArticulo = -1;
                 imagenesAux.Add(aux);
-                aux.UrlImagen = archivo.SafeFileName;
                 imagenesBackups.Add(aux);   
             }                    
         }
@@ -199,7 +196,7 @@ namespace tp2
         {
             if (imagenes.Count > 0)
             {
-                txtUrlImagen.Text = imagenes[0].UrlImagen;
+                //txtUrlImagen.Text = imagenes[0].UrlImagen;
                 cargarImagen(imagenes[0].UrlImagen);
             }
             else
@@ -216,6 +213,7 @@ namespace tp2
                 {
                     if (articulo != null)
                     {
+
                         pbxArticulo.Load(ConfigurationManager.AppSettings["images-folder"] + imag);
                     }
                     else
@@ -230,8 +228,8 @@ namespace tp2
             }
             catch (Exception ex)
             {
-                //pbxArticulo.Load("https://img.freepik.com/vector-premium/no-hay-foto-disponible-icono-vector-simbolo-imagen-predeterminado-imagen-proximamente-sitio-web-o-aplicacion-movil_87543-10615.jpg?w=826");
-                pbxArticulo.Load(ConfigurationManager.AppSettings["images-folder"] + "nodisponible.jpg");
+                pbxArticulo.Load("https://img.freepik.com/vector-premium/no-hay-foto-disponible-icono-vector-simbolo-imagen-predeterminado-imagen-proximamente-sitio-web-o-aplicacion-movil_87543-10615.jpg?w=826");
+                //pbxArticulo.Load(ConfigurationManager.AppSettings["images-folder"] + "nodisponible.jpg");
             }
         }
 
@@ -290,47 +288,6 @@ namespace tp2
             return -1;
         }
 
-        private void btnAdelante_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (articulo != null && articulo.Imagenes.Count > 0)
-                {
-                    List<Imagen> imagenes = new List<Imagen>();
-                    imagenes = articulo.Imagenes;
-                    int i = 0;
-                    foreach (Imagen img in imagenes)
-                    {
-                        if (img.UrlImagen == pbxArticulo.ImageLocation)
-                        {
-                            if (i == imagenes.Count - 1)
-                            {
-                                cargarImagen(imagenes[0].UrlImagen);
-                                contImagenes = 0;
-                                break;
-                            }
-                            else
-                            {
-                                cargarImagen(imagenes[i + 1].UrlImagen);
-                                contImagenes= i + 1;    
-                                break;
-                            }
-                        }
-                        i++;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No hay imagenes para mostrar.");
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
         private void btnAtras_Click(object sender, EventArgs e)
         {
             try
@@ -384,7 +341,7 @@ namespace tp2
                         MessageBox.Show("No hay imagenes para mostrar.");
                     }
                 }
-                else
+                else//alta
                 {
                     if (imagenesAux.Count > 0)
                     {
@@ -407,6 +364,126 @@ namespace tp2
                                 }
                             }
                             i++;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay imagenes para mostrar.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+        }
+
+        private void btnAdelante_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (articulo != null)//modificacion
+                {
+                    if (articulo.Imagenes.Count > 0)
+                    {
+                        List<Imagen> imagenes = new List<Imagen>();
+                        imagenes = articulo.Imagenes;
+                        int i = 0;
+                        foreach (Imagen img in imagenes)
+                        {
+                            if (!(img.UrlImagen.ToUpper().Contains("HTTP")))//archivo
+                            {
+                                string path = ConfigurationManager.AppSettings["images-folder"] + img.UrlImagen;
+                                if (path == pbxArticulo.ImageLocation)
+                                {
+                                    if (i == imagenes.Count - 1)
+                                    {
+                                        cargarImagen(imagenes[0].UrlImagen);
+                                        contImagenes = 0;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        cargarImagen(imagenes[i + 1].UrlImagen);
+                                        contImagenes = i + 1;
+                                        break;
+                                    }
+                                }
+                            }
+                            else//url
+                            {
+                                if (img.UrlImagen == pbxArticulo.ImageLocation)
+                                {
+                                    if (i == imagenes.Count - 1)
+                                    {
+                                        cargarImagen(imagenes[0].UrlImagen);
+                                        contImagenes = 0;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        cargarImagen(imagenes[i + 1].UrlImagen);
+                                        contImagenes = i + 1;
+                                        break;
+                                    }
+                                }
+                            }
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay imagenes para mostrar.");
+                    }
+                }
+                else//alta
+                {
+                    if (imagenesAux.Count > 0)
+                    {
+                        List<Imagen> imagenes = new List<Imagen>();
+                        imagenes = imagenesAux; ;
+                        int i = 0;
+                        foreach (Imagen img in imagenes)
+                        {
+                            if (!(img.UrlImagen.ToUpper().Contains("HTTP")))//archivo
+                            {
+                                string path = ConfigurationManager.AppSettings["images-folder"] + img.UrlImagen;
+                                if (path == pbxArticulo.ImageLocation)
+                                {
+                                    if (i == imagenes.Count - 1)
+                                    {
+                                        cargarImagen(imagenes[0].UrlImagen);
+                                        contImagenes = 0;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        cargarImagen(imagenes[i + 1].UrlImagen);
+                                        contImagenes = i + 1;
+                                        break;
+                                    }
+                                }
+                            }
+                            else//url
+                            {
+                                if (img.UrlImagen == pbxArticulo.ImageLocation)
+                                {
+                                    if (i == imagenes.Count - 1)
+                                    {
+                                        cargarImagen(imagenes[0].UrlImagen);
+                                        contImagenes = 0;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        cargarImagen(imagenes[i + 1].UrlImagen);
+                                        contImagenes = i + 1;
+                                        break;
+                                    }
+                                }
+                            }
+                                i++;
                         }
                     }
                     else
