@@ -124,20 +124,23 @@ namespace tp2
         {
             Imagen aux = new Imagen();
             ImagenNegocio imagenNegocio = new ImagenNegocio();
-            aux.UrlImagen = txtUrlImagen.Text;
-            aux.ID = -1;
-            if (articulo != null)
+            if (txtUrlImagen.Text != "")
             {
-                aux.IdArticulo = articulo.ID;
-                articulo.Imagenes.Add(aux);
-                imagenNegocio.agregar(aux);
-                cargarImagen(txtUrlImagen.Text);
-            }
-            else
-            {
-                aux.IdArticulo = -1;
-                imagenes.Add(aux);
-                cargarImagen(txtUrlImagen.Text);
+                aux.UrlImagen = txtUrlImagen.Text;
+                aux.ID = -1;
+                if (articulo != null)
+                {
+                    aux.IdArticulo = articulo.ID;
+                    articulo.Imagenes.Add(aux);
+                    imagenNegocio.agregar(aux);
+                    cargarImagen(txtUrlImagen.Text);
+                }
+                else
+                {
+                    aux.IdArticulo = -1;
+                    imagenes.Add(aux);
+                    cargarImagen(txtUrlImagen.Text);
+                }
             }
             txtUrlImagen.Text = "";
         }

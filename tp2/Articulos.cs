@@ -137,7 +137,7 @@ namespace tp2
 
                 AbmArticulos modificar = new AbmArticulos(seleccionado);
                 modificar.ShowDialog();
-                cargar();
+                Cargar();
             }
         }
 
