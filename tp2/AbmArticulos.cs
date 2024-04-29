@@ -35,7 +35,6 @@ namespace tp2
 
         private void form_Load(object sender, EventArgs e)
         {
-
             MarcaNegocio marcaNegocio = new MarcaNegocio();
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
             try
@@ -49,23 +48,17 @@ namespace tp2
 
                 if (articulo != null)
                 {
-                    txtUrlImagen.Enabled = false;
-                    btnAgregarImagen.Enabled = false;
                     txtCodigo.Text = articulo.Codigo.ToString();
                     txtNombre.Text = articulo.Nombre;
                     txtDescripcion.Text = articulo.Descripcion;
-
-                    // txtUrlImagen.Text = articulo.UrlImagen;
-                    //cargarImagen(articulo.UrlImagen);
                     cargarImagenes(articulo.Imagenes);
-                    //cargarImagenes(10);
-
-                    //  txtUrlImagen.Text = articulo.UrlImagen;
-                    //cargarImagen(articulo.UrlImagen);
-
                     txtPrecio.Text = articulo.Precio.ToString("#0.00", System.Globalization.CultureInfo.InvariantCulture);
                     cboMarca.SelectedValue = articulo.Marca.ID;
                     cboCategoria.SelectedValue = articulo.Categoria.ID;
+                }
+                else
+                {
+                    cargarImagen("x");
                 }
             }
             catch (Exception ex)
@@ -73,16 +66,85 @@ namespace tp2
                 MessageBox.Show(ex.ToString());
                 MessageBox.Show("Error al cargar ventana.");
             }
-        }
-        private void btnCancelar_Click(object sender, EventArgs e)
+        }            
+               
+        private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Close();
+            ArticuloNegocio negocioArticulo = new ArticuloNegocio();
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
+            int id;
+            try
+            {
+                if (validarArticulo())
+                    return;
+                if (articulo == null)
+                    articulo = new Articulo();
+
+                articulo.Codigo = txtCodigo.Text;
+                articulo.Nombre = txtNombre.Text;
+                articulo.Descripcion = txtDescripcion.Text;
+                articulo.Precio = pasarADecimal(txtPrecio.Text);
+                articulo.Marca = (Marca)cboMarca.SelectedItem;
+                articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
+
+                if (articulo.ID != 0)//modificacion
+                {
+                    negocioArticulo.modificar(articulo);                    
+                    MessageBox.Show("Modificado exitosamente");
+                }
+                else//alta
+                {
+                    negocioArticulo.agregar(articulo);
+                    id = negocioArticulo.buscarUltimo();
+                    if (imagenes.Count > 0)
+                    {
+                        for (int i = 0; i < imagenes.Count; i++)
+                        {                             
+                            imagenes[i].IdArticulo = id;
+                            imagenNegocio.agregar(imagenes[i]);
+                        }
+                    }
+                    MessageBox.Show("Agregado exitosamente" + id);
+                }
+                //Guardo imagen si la levantó localmente:
+                /*if (archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP")))
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);*/
+
+                Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Error al guardar/modificar. Intente nuevamente.");
+            }
+        }       
+
+        private void btnAceptarImagen_Click(object sender, EventArgs e)
+        {
+            Imagen aux = new Imagen();
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
+            aux.UrlImagen = txtUrlImagen.Text;
+            aux.ID = -1;
+            if (articulo != null)
+            {
+                aux.IdArticulo = articulo.ID;
+                articulo.Imagenes.Add(aux);
+                imagenNegocio.agregar(aux);
+                cargarImagen(txtUrlImagen.Text);
+            }
+            else
+            {
+                aux.IdArticulo = -1;
+                imagenes.Add(aux);
+                cargarImagen(txtUrlImagen.Text);
+            }
         }
         private void cargarImagenes(List<Imagen> imagenes)
         {
             if (imagenes.Count > 0)
             {
-                txtUrlImagen.Text = imagenes[0].UrlImagen;
+                //txtUrlImagen.Text = imagenes[0].UrlImagen;
                 cargarImagen(imagenes[0].UrlImagen);
             }
             else
@@ -90,6 +152,7 @@ namespace tp2
                 cargarImagen("xxxxx");
             }
         }
+
         private void cargarImagen(string imag)
         {
             try
@@ -98,11 +161,13 @@ namespace tp2
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.ToString());
                 pbxArticulo.Load("https://img.freepik.com/vector-premium/no-hay-foto-disponible-icono-vector-simbolo-imagen-predeterminado-imagen-proximamente-sitio-web-o-aplicacion-movil_87543-10615.jpg?w=826");
             }
         }
-
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
         private bool validarArticulo()
         {
             if (cboMarca.SelectedIndex < 0)
@@ -155,89 +220,10 @@ namespace tp2
             }
             return -1;
         }
-        private void btnAceptar_Click(object sender, EventArgs e)
-        {
-            ArticuloNegocio negocioArticulo = new ArticuloNegocio();
-            ImagenNegocio imagenNegocio = new ImagenNegocio();
-            int id;
-            try
-            {
-                if (validarArticulo())
-                    return;
-                if (articulo == null)
-                    articulo = new Articulo();
-
-                articulo.Codigo = txtCodigo.Text;
-                articulo.Nombre = txtNombre.Text;
-                articulo.Descripcion = txtDescripcion.Text;
-                //articulo.UrlImagen = txtUrlImagen.Text;
-                articulo.Precio = pasarADecimal(txtPrecio.Text);
-                articulo.Marca = (Marca)cboMarca.SelectedItem;
-                articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
-
-                if (articulo.ID != 0)
-                {
-                    negocioArticulo.modificar(articulo);
-                    if (articulo.Imagenes.Count > 0)
-                    {
-                        for (int i = 0; i < articulo.Imagenes.Count; i++)
-                        {
-                            if (articulo.Imagenes[i].ID > -1)
-                            {
-                                imagenNegocio.modificar(articulo.Imagenes[i]);
-                            }
-                            else
-                            {
-                                imagenNegocio.agregar(articulo.Imagenes[i]);
-                            }
-                        }
-                    }
-                    MessageBox.Show("Modificado exitosamente");
-                }
-                else
-                {
-                    int ii = negocioArticulo.agregar2(articulo);
-                    MessageBox.Show(Convert.ToString(ii));
-                    id = negocioArticulo.buscarUltimo();
-                    if (imagenes.Count > 0)
-                    {
-                        for (int i = 0; i < imagenes.Count; i++)
-                        {
-                            /* if (articulo.Imagenes[i].ID > -1)
-                             {
-                                 imagenNegocio.modificar(articulo.Imagenes[i]);
-                             }
-                             else
-                             {*/
-
-                            imagenes[i].IdArticulo = id;
-                            imagenNegocio.agregar(imagenes[i]);
-
-                            //}
-                        }
-                    }
-                    MessageBox.Show("Agregado exitosamente" + id);
-                }
-
-                //Guardo imagen si la levantó localmente:
-                /*if (archivo != null && !(txtUrlImagen.Text.ToUpper().Contains("HTTP")))
-                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);*/
-
-                Close();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                MessageBox.Show("Error al guardar/modificar. Intente nuevamente.");
-            }
-        }
-
         private void txtUrlImagen_Leave(object sender, EventArgs e)
         {
             cargarImagen(txtUrlImagen.Text);
         }
-
         private void btnAgregarImagen_Click(object sender, EventArgs e)
         {
             archivo = new OpenFileDialog();
@@ -262,59 +248,67 @@ namespace tp2
             txtUrlImagen.Text = "";
             btnAgregarImagen.Enabled = true;
         }
-
-        private void btnAceptarImagen_Click(object sender, EventArgs e)
-        {
-            txtUrlImagen.Enabled = false;
-            //txtUrlImagen.Text = "";
-            btnAgregarImagen.Enabled = false;
-            //articulo.Imagenes.Add
-            Imagen aux = new Imagen();
-            aux.UrlImagen = txtUrlImagen.Text;
-            aux.ID = -1;
-            if (articulo != null)
-            {
-                aux.IdArticulo = articulo.ID;
-                articulo.Imagenes.Add(aux);
-            }
-            else
-            {
-                aux.IdArticulo = -1;
-                imagenes.Add(aux);
-            }
-        }
-
         private void btnAdelante_Click(object sender, EventArgs e)
         {
             try
             {
-                if (articuloSeleccionado != null && articuloSeleccionado.Imagenes.Count > 0)
-                {
-                    List<Imagen> imagenes = new List<Imagen>();
-                    imagenes = articuloSeleccionado.Imagenes;
-                    int i = 0;
-                    foreach (Imagen img in imagenes)
+                if (articuloSeleccionado != null) {
+                    if (articuloSeleccionado.Imagenes.Count > 0)
                     {
-                        if (img.UrlImagen == pbxArticulo.ImageLocation)
+                        List<Imagen> imagenes = new List<Imagen>();
+                        imagenes = articuloSeleccionado.Imagenes;
+                        int i = 0;
+                        foreach (Imagen img in imagenes)
                         {
-                            if (i == imagenes.Count - 1)
+                            if (img.UrlImagen == pbxArticulo.ImageLocation)
                             {
-                                cargarImagen(imagenes[0].UrlImagen);
-                                break;
+                                if (i == imagenes.Count - 1)
+                                {
+                                    cargarImagen(imagenes[0].UrlImagen);
+                                    break;
+                                }
+                                else
+                                {
+                                    cargarImagen(imagenes[i + 1].UrlImagen);
+                                    break;
+                                }
                             }
-                            else
-                            {
-                                cargarImagen(imagenes[i + 1].UrlImagen);
-                                break;
-                            }
+                            i++;
                         }
-                        i++;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay imagenes para mostrar.");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("No hay imagenes para mostrar.");
-                }
+                    if (imagenes.Count > 0)
+                    {
+                        int i = 0;
+                        foreach (Imagen img in imagenes)
+                        {
+                            if (img.UrlImagen == pbxArticulo.ImageLocation)
+                            {
+                                if (i == imagenes.Count - 1)
+                                {
+                                    cargarImagen(imagenes[0].UrlImagen);
+                                    break;
+                                }
+                                else
+                                {
+                                    cargarImagen(imagenes[i + 1].UrlImagen);
+                                    break;
+                                }
+                            }
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay imagenes para mostrar.");
+                    }
+                }                
             }
             catch (Exception ex)
             {

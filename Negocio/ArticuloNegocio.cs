@@ -103,36 +103,6 @@ namespace Negocio
         }
 
         public void agregar(Articulo nuevo)
-
-        {
-            AccesoDatos datos = new AccesoDatos();
-
-            try
-            {
-                datos.setearConsulta("Insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, ImagenUrl, Precio)values( @Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @UrlImagen, @Precio)");
-                datos.setearParametro("@Codigo", nuevo.Codigo);
-                datos.setearParametro("@Nombre", nuevo.Nombre);
-                datos.setearParametro("@Descripcion", nuevo.Descripcion);
-                datos.setearParametro("@IdMarca", nuevo.Marca.ID);
-                datos.setearParametro("@IdCategoria", nuevo.Categoria.ID);
-
-                datos.setearParametro("@Precio", nuevo.Precio);
-                datos.ejecutarAccion();
-                //string x= (string)datos.Lector["ID"];
-                //return x;
-                
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-
-        public int agregar2(Articulo nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
             int id = -1;
@@ -144,18 +114,8 @@ namespace Negocio
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@IdMarca", nuevo.Marca.ID);
                 datos.setearParametro("@IdCategoria", nuevo.Categoria.ID);
-                // datos.setearParametro("@UrlImagen", nuevo.UrlImagen);
                 datos.setearParametro("@Precio", nuevo.Precio);
-                datos.ejecutarAccion();
-                //string x = (string)datos.Lector["ID"];
-                //return x;
-                while (datos.Lector.Read())
-                {
-                    //Articulo aux = new Articulo();
-                    id = (int)datos.Lector["ID"];
-                }
-                return id;
-
+                datos.ejecutarAccion();              
             }
             catch (Exception ex)
             {
